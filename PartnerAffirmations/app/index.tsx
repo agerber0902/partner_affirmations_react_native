@@ -4,11 +4,12 @@ import { useAuth } from "@/providers/auth-provider";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Home from "./home";
+import LoadingSpinner from "@/components/shared/loading-spinner";
 
 const App = () => {
   const styles = indexStyles();
 
-  const { user } = useAuth();
+  const { user, authLoading } = useAuth();
 
   const isAuthenticated = user !== null;
   console.log(isAuthenticated);
@@ -16,7 +17,8 @@ const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Text>Partner Affirmations</Text>
-      {!isAuthenticated ? <LoginModal /> : <Home />}
+      {authLoading && <LoadingSpinner viewStyle={styles.loadingSpinner}/>}
+      {!authLoading && ( !isAuthenticated ? <LoginModal /> : <Home />)}
     </SafeAreaView>
   );
 };
