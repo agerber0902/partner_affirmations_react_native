@@ -1,6 +1,11 @@
+import StoreProvder from "@/state/StateProvider";
 import { Stack } from "expo-router";
 import "react-native-reanimated";
 
 export default function RootLayout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <StoreProvder>
+      <Stack screenOptions={{ headerShown: false }} />
+    </StoreProvder>
+  );
 }
