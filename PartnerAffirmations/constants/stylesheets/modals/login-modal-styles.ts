@@ -41,4 +41,7 @@ export const loginModalStyles = () =>
       color: Theme.colors.white,
       fontStyle: "italic",
     },
+    error: {
+      color: Theme.colors.notification,
+    },
   });

@@ -11,4 +11,14 @@ export const indexStyles = () =>
 
       backgroundColor: Theme.colors.background,
     },
+    loadingSpinner: {
+      display: "flex",
+      flex: 1, 
+
+      margin: "auto",
+
+      justifyContent: "center",
+      alignItems: "center",
+      alignSelf: "center",
+    },
 });

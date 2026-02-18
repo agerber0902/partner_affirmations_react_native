@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import Button from "../shared/button";
+import { signIn, signUp } from "@/helpers/firebase-helper";
 
 type LoginFormProps = {
   isLogin: boolean;
@@ -23,6 +24,16 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | undefined>();
+
+  const loginOrCreate = async () => {
+    const response = isLogin ? await signIn(email, password) : await signUp(email, password);
+
+    // Login is handles by auth provider listener
+
+    // handle error
+    setError(response.error);
+  }
 
   return (
     <View style={styles.loginForm}>
@@ -57,8 +68,10 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
           autoComplete="password"
         />
 
+        {error && <Text style={styles.error}>{error}</Text>}
+
         <View style={styles.actions}>
-          <Button title={isLogin ? "Login" : "Create"} onPress={() => {}} />
+          <Button title={isLogin ? "Login" : "Create"} onPress={loginOrCreate} />
 
           <Pressable onPress={toggleLoginState}>
             <Text style={styles.toggleAction}>
