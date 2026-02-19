@@ -10,6 +10,19 @@ export type FirebaseResponse = {
   error: string | undefined;
 };
 
+export const signOut = async (): Promise<boolean> => {
+  auth.signOut()
+    .then(() => {
+      return true;
+    })
+    .catch((error) => {
+      //TODO: handle error
+      return false;
+    });
+
+    return false;
+};
+
 export const signUp = async (
   email: string,
   password: string,

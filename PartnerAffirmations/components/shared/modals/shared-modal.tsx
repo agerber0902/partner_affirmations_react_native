@@ -8,10 +8,11 @@ import {
 type ModalProps = {
   header: string;
   modalContent: React.ReactNode;
+  isVisible: boolean;
   onRequestClose?: () => void;
 };
 
-const SharedModal = ({header, modalContent}: ModalProps) => {
+const SharedModal = ({header, modalContent, isVisible, onRequestClose}: ModalProps) => {
   const styles = sharedModalStyles();
 
 
@@ -20,8 +21,8 @@ const SharedModal = ({header, modalContent}: ModalProps) => {
       style={styles.modalContainer}
       animationType="slide"
       transparent={true}
-      visible={true}
-      onRequestClose={() => {}}
+      visible={isVisible}
+      onRequestClose={onRequestClose}
     >
       <View style={styles.modalView}>
         <Text style={styles.modalHeader}>

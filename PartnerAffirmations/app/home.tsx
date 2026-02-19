@@ -1,10 +1,29 @@
-import { useAuth } from "@/providers/auth-provider";
-import { Text } from "react-native";
+import { homeStyles } from "@/constants/stylesheets/home-styles";
+import { useEffect, useRef } from "react";
+import { Animated } from "react-native";
 
-const Home = () => {
+type HomeProps = {
+  isVisible: boolean;
+};
+const Home = ({ isVisible }: HomeProps) => {
+  const style = homeStyles();
 
-    const { user } = useAuth();
+  // Animation
+  const opacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (isVisible) {
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [isVisible, opacity]);
 
-    return (<Text>{user?.displayName}, {user?.email}</Text>);
+  return (
+    <Animated.View style={[style.homeContainer, { opacity }]}>
+        
+    </Animated.View>
+  );
 };
 export default Home;

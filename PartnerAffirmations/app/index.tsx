@@ -1,10 +1,10 @@
 import LoginModal from "@/components/modals/login-modal";
 import { indexStyles } from "@/constants/stylesheets/index-styles";
 import { useAuth } from "@/providers/auth-provider";
-import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Home from "./home";
 import LoadingSpinner from "@/components/shared/loading-spinner";
+import Header from "@/components/header";
 
 const App = () => {
   const styles = indexStyles();
@@ -16,9 +16,10 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Text>Partner Affirmations</Text>
+      <Header/>
       {authLoading && <LoadingSpinner viewStyle={styles.loadingSpinner}/>}
-      {!authLoading && ( !isAuthenticated ? <LoginModal /> : <Home />)}
+      <LoginModal />
+      {!authLoading && isAuthenticated && <Home isVisible={!authLoading && isAuthenticated}/>}
     </SafeAreaView>
   );
 };
