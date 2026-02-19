@@ -17,7 +17,7 @@ export const sharedModalStyles = () =>
 
       margin: "auto",
 
-      backgroundColor: Theme.colors.secondaryCard,
+      backgroundColor: Theme.colors.secondary,
     },
     modalHeader: {
       ...Theme.fonts.header,

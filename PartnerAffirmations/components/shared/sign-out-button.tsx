@@ -12,7 +12,7 @@ const SignOutButton = () => {
   };
 
   return (
-    <>{user !== null && <Button title="Sign Out" onPress={handleSignOut} viewStyle={{backgroundColor: Theme.colors.secondaryCard}}/>}</>
+    <>{user !== null && <Button title="Sign Out" onPress={handleSignOut} viewStyle={{backgroundColor: Theme.colors.secondary}}/>}</>
   );
 };
 export default SignOutButton;
