@@ -1,3 +1,4 @@
+import WelcomeMessage from "@/components/home/welcome-message";
 import { homeStyles } from "@/constants/stylesheets/home-styles";
 import { useEffect, useRef } from "react";
 import { Animated } from "react-native";
@@ -14,7 +15,7 @@ const Home = ({ isVisible }: HomeProps) => {
     if (isVisible) {
       Animated.timing(opacity, {
         toValue: 1,
-        duration: 1000,
+        duration: 1500,
         useNativeDriver: true,
       }).start();
     }
@@ -22,7 +23,7 @@ const Home = ({ isVisible }: HomeProps) => {
 
   return (
     <Animated.View style={[style.homeContainer, { opacity }]}>
-        
+        <WelcomeMessage/>
     </Animated.View>
   );
 };

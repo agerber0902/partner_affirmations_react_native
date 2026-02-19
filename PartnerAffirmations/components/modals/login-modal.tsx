@@ -4,7 +4,7 @@ import LoginForm from "../login/login-form";
 import { useAuth } from "@/providers/auth-provider";
 
 const LoginModal = () => {
-  const { user } = useAuth();
+  const { user, authLoading } = useAuth();
 
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
@@ -14,7 +14,7 @@ const LoginModal = () => {
 
   return (
     <SharedModal
-      isVisible={user === null}
+      isVisible={user === null && !authLoading}
       header={isLogin ? "Login" : "Create Account"}
       modalContent={
         <LoginForm isLogin={isLogin} toggleLoginState={toggleLoginState} />
