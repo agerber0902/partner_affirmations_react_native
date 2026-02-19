@@ -32,6 +32,7 @@ export const loginModalStyles = () =>
       alignSelf: "center",
 
       marginTop: "auto",
+      paddingBottom: 15,
     },
     toggleAction: {
       width: "100%",

@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Button from "../shared/button";
 import { signIn, signUp } from "@/helpers/firebase-helper";
+import { useAuth } from "@/providers/auth-provider";
 
 type LoginFormProps = {
   isLogin: boolean;
@@ -21,19 +22,26 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
   const styles = loginModalStyles();
   const modalStyles = sharedModalStyles();
 
+  const { setDisplayName } = useAuth();
+
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | undefined>();
 
   const loginOrCreate = async () => {
-    const response = isLogin ? await signIn(email, password) : await signUp(email, password);
+    const response = isLogin
+      ? await signIn(email, password)
+      : await signUp(email, password, name);
 
     // Login is handles by auth provider listener
 
+    // Set display name
+    setDisplayName(response.user?.displayName ?? "");
+
     // handle error
     setError(response.error);
-  }
+  };
 
   return (
     <View style={styles.loginForm}>
@@ -71,7 +79,10 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
         {error && <Text style={styles.error}>{error}</Text>}
 
         <View style={styles.actions}>
-          <Button title={isLogin ? "Login" : "Create"} onPress={loginOrCreate} />
+          <Button
+            title={isLogin ? "Login" : "Create"}
+            onPress={loginOrCreate}
+          />
 
           <Pressable onPress={toggleLoginState}>
             <Text style={styles.toggleAction}>

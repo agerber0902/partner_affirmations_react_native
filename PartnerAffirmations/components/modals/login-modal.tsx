@@ -1,8 +1,11 @@
 import { useState } from "react";
 import SharedModal from "../shared/modals/shared-modal";
 import LoginForm from "../login/login-form";
+import { useAuth } from "@/providers/auth-provider";
 
 const LoginModal = () => {
+  const { user, authLoading } = useAuth();
+
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const toggleLoginState = () => {
@@ -11,8 +14,11 @@ const LoginModal = () => {
 
   return (
     <SharedModal
+      isVisible={user === null && !authLoading}
       header={isLogin ? "Login" : "Create Account"}
-      modalContent={<LoginForm isLogin={isLogin} toggleLoginState={toggleLoginState}/>}
+      modalContent={
+        <LoginForm isLogin={isLogin} toggleLoginState={toggleLoginState} />
+      }
     />
   );
 };
