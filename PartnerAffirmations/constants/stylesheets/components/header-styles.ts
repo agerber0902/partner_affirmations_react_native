@@ -19,7 +19,7 @@ export const headerStyles = () =>
 
         color: Theme.colors.primary,
         fontFamily: Theme.fonts.header.fontFamily,
-        fontWeight: "500",
+        fontWeight: "700",
         fontSize: 35,
         fontStyle: "italic",
     },

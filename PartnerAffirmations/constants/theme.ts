@@ -5,9 +5,9 @@ const WEB_FONT_STACK =
 
 const textColor = "#040303";
 const cardColor = "#6A7B76";
-const secondaryCardColor = "#8B9D83";
-const backgroundColor = "#BEB0A7";
-const primaryColor = "#3A4E48";
+const secondaryColor = "#8B9D83";
+const primaryColor = "#BEB0A7";
+const backgroundColor = "#3A4E48";
 
 export const Theme = {
   dark: false,
@@ -15,7 +15,7 @@ export const Theme = {
     white: "#FFFF",
     text: textColor,
     card: cardColor,
-    secondaryCard: secondaryCardColor,
+    secondary: secondaryColor,
     background: backgroundColor,
     primary: primaryColor,
     border: "rgb(199, 199, 204)",

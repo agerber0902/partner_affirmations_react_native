@@ -7,10 +7,10 @@ export const welcomeStyles = () =>
       display: "flex",
       width: "90%",
 
-      color: Theme.colors.card,
+      color: Theme.colors.primary,
       fontFamily: Theme.fonts.header.fontFamily,
-      fontWeight: "500",
-      fontSize: 30,
+      fontWeight: "300",
+      fontSize: 32,
       fontStyle: "italic",
     },
   });
