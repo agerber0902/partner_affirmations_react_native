@@ -24,7 +24,7 @@ export const headerStyles = () =>
         fontStyle: "italic",
     },
     signOutContainer: {
-        width: "10%",
+        minWidth: "20%",
 
         paddingRight: 10,
     },
