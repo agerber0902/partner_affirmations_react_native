@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
+import { Theme } from "../theme";
 
 export const homeStyles = () =>
   StyleSheet.create({
     homeContainer: {
-        display: "flex",
-        width: "100%",
+      display: "flex",
+      width: "90%",
 
-        margin: "auto",
-
+      marginLeft: "auto",
+      marginRight: "auto",
     },
-});
+  });
