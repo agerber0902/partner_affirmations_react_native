@@ -5,7 +5,7 @@ export const homeStyles = () =>
   StyleSheet.create({
     homeContainer: {
       display: "flex",
-      width: "90%",
+      width: "100%",
 
       flex: 1,
 
@@ -26,7 +26,8 @@ export const homeStyles = () =>
 
     },
     addButton: {
-      width: "15%",
+      minWidth: "15%",
+      maxWidth: "25%",
 
       alignSelf: "flex-end",
 

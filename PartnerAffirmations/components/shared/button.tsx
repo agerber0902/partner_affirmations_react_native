@@ -6,11 +6,12 @@ type ButtonProps = {
     viewStyle?: ViewStyle;
     textStyle?: TextStyle;
     onPress: () => void;
+    isDisabled?: boolean;
 }
 
-const Button = ({title, viewStyle, textStyle, onPress}: ButtonProps) => {
+const Button = ({title, viewStyle, textStyle, onPress, isDisabled = false}: ButtonProps) => {
   return (
-    <Pressable onPress={onPress} style={[Theme.button, viewStyle]}>
+    <Pressable onPress={onPress} style={[Theme.button, viewStyle]} disabled={isDisabled}>
       <Text style={[Theme.buttonText, textStyle]}>{title}</Text>
     </Pressable>
   );
