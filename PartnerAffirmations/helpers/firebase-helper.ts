@@ -4,15 +4,31 @@ import {
   updateProfile,
   User,
 } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { auth, firestore } from "../config/firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export type FirebaseResponse = {
   user: User | null;
   error: string | undefined;
 };
 
+export const addData = async <T>(collectionName: string, data: T) => {
+  try {
+    const docRef = await addDoc(collection(firestore, collectionName), {
+      ...data,
+      createdAt: serverTimestamp(),
+    });
+
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding document:", error);
+    throw error;
+  }
+};
+
 export const signOut = async (): Promise<boolean> => {
-  auth.signOut()
+  auth
+    .signOut()
     .then(() => {
       return true;
     })
@@ -21,7 +37,7 @@ export const signOut = async (): Promise<boolean> => {
       return false;
     });
 
-    return false;
+  return false;
 };
 
 export const signUp = async (
@@ -36,7 +52,7 @@ export const signUp = async (
       password,
     );
 
-    await updateProfile(userCredential.user, {displayName});
+    await updateProfile(userCredential.user, { displayName });
     await userCredential.user.reload();
 
     return { user: userCredential.user, error: undefined };

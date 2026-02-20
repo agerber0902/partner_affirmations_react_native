@@ -11,7 +11,8 @@ export const headerStyles = () =>
         justifyContent: "space-between",
         alignItems: "center",
 
-        padding: 15,
+        paddingTop: 15,
+        paddingBottom: 15,
 
     },
     headerText: {
@@ -24,8 +25,7 @@ export const headerStyles = () =>
         fontStyle: "italic",
     },
     signOutContainer: {
-        width: "10%",
-
-        paddingRight: 10,
+        minWidth: "15%",
+        
     },
 });

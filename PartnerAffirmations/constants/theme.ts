@@ -53,6 +53,17 @@ export const Theme = {
     color: "white",
     fontSize: 16,
     fontWeight: "400",
+    padding: 5,
+  } as TextStyle,
+
+  textInput: {
+    width: "100%",
+    minHeight: 50,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    marginBottom: 15,
   } as TextStyle,
 
   fonts: Platform.select({

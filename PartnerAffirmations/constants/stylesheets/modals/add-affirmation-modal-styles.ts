@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { Theme } from "../../theme";
 
-export const loginModalStyles = () =>
+export const addAffirmationModalStyles = () =>
   StyleSheet.create({
-    loginForm: {
+    form: {
       display: "flex",
       width: "75%",
       minHeight: "100%",
@@ -15,8 +15,15 @@ export const loginModalStyles = () =>
       justifyContent: "flex-start",
       alignSelf: "center",
     },
-    input: Theme.textInput,
-    
+    input: {
+      width: "100%",
+      minHeight: 50,
+      borderWidth: 1,
+      borderColor: "#ddd",
+      borderRadius: 10,
+      paddingHorizontal: 15,
+      marginBottom: 15,
+    },
     actions: {
       display: "flex",
       width: "50%",

@@ -9,6 +9,8 @@ export const indexStyles = () =>
       height: "100%",
       flex: 1,
 
+      padding: 10,
+
       backgroundColor: Theme.colors.background,
     },
     loadingSpinner: {
