@@ -1,7 +1,8 @@
 import WelcomeMessage from "@/components/home/welcome-message";
+import Button from "@/components/shared/button";
 import { homeStyles } from "@/constants/stylesheets/home-styles";
 import { useEffect, useRef } from "react";
-import { Animated } from "react-native";
+import { Animated, Pressable, View } from "react-native";
 
 type HomeProps = {
   isVisible: boolean;
@@ -23,7 +24,15 @@ const Home = ({ isVisible }: HomeProps) => {
 
   return (
     <Animated.View style={[style.homeContainer, { opacity }]}>
+      <View style={style.contentContainer}>
         <WelcomeMessage/>
+      </View>
+      
+      <View style={style.addButtonContainer}>
+        <Pressable id="add-affirmation">
+          <Button title="+" onPress={()=>{}} viewStyle={style.addButton}/>
+        </Pressable>
+      </View>
     </Animated.View>
   );
 };
