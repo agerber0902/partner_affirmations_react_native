@@ -1,23 +1,25 @@
-import { useState } from "react";
 import SharedModal from "../shared/modals/shared-modal";
 import AddAffirmationForm from "../affirmations/add-affirmation-form";
+import { useState } from "react";
 
 type AddAffirmationModalProps = {
-    isVisible: boolean;
-    toggleVisibleState: () => void;
-}
+  isVisible: boolean;
+  toggleVisibleState: () => void;
+};
 
-const AddAffirmationModal = ({isVisible, toggleVisibleState}: AddAffirmationModalProps) => {
+const AddAffirmationModal = ({
+  isVisible,
+  toggleVisibleState,
+}: AddAffirmationModalProps) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   return (
     <SharedModal
       isVisible={isVisible}
       header={"Add Affirmation"}
       onRequestClose={toggleVisibleState}
-      onBackDropPress={toggleVisibleState}
-      modalContent={
-        <AddAffirmationForm/>
-      }
+      onBackDropPress={isLoading ? undefined : toggleVisibleState}
+      modalContent={<AddAffirmationForm isLoading={isLoading} setIsLoading={setIsLoading}/>}
     />
   );
 };

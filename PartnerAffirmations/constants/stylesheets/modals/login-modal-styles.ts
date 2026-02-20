@@ -15,15 +15,8 @@ export const loginModalStyles = () =>
       justifyContent: "flex-start",
       alignSelf: "center",
     },
-    input: {
-      width: "100%",
-      minHeight: 50,
-      borderWidth: 1,
-      borderColor: "#ddd",
-      borderRadius: 10,
-      paddingHorizontal: 15,
-      marginBottom: 15,
-    },
+    input: Theme.textInput,
+    
     actions: {
       display: "flex",
       width: "50%",

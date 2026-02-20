@@ -12,6 +12,7 @@ import {
 import Button from "../shared/button";
 import { signIn, signUp } from "@/helpers/firebase-helper";
 import { useAuth } from "@/providers/auth-provider";
+import { Theme } from "@/constants/theme";
 
 type LoginFormProps = {
   isLogin: boolean;
@@ -55,6 +56,7 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
             value={name}
             onChangeText={setName}
             style={styles.input}
+            selectionColor={Theme.colors.primary}
           />
         )}
         <TextInput

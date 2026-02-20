@@ -1,17 +1,70 @@
 import { addAffirmationModalStyles } from "@/constants/stylesheets/modals/add-affirmation-modal-styles";
 import { sharedModalStyles } from "@/constants/stylesheets/modals/shared-modal-styles";
+import { Theme } from "@/constants/theme";
+import { Dispatch, SetStateAction, useState } from "react";
 import { KeyboardAvoidingView, Platform, TextInput, View } from "react-native";
+import Button from "../shared/button";
+import { addData } from "@/helpers/firebase-helper";
+import { Affirmation } from "@/constants/models/affirmation";
+import LoadingSpinner from "../shared/loading-spinner";
 
-const AddAffirmationForm = () => {
+type AddAffirmationFormProps = {
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+};
+
+const AddAffirmationForm = ({
+  isLoading,
+  setIsLoading,
+}: AddAffirmationFormProps) => {
   const style = addAffirmationModalStyles();
   const modalStyle = sharedModalStyles();
+
+  const [message, setMessage] = useState<string | undefined>(undefined);
+
+  const handleAdd = async () => {
+    //TODO: Validate input
+    if (message === undefined) {
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      // Add to data base
+      await addData<Affirmation>("affirmations", new Affirmation(message!));
+      setMessage(undefined); // reset input
+    } catch (error) {
+      console.error("Failed to add team:", error);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  };
 
   return (
     <View style={style.form}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={modalStyle.modalContainer}
-      ></KeyboardAvoidingView>
+      >
+        <TextInput
+          value={message}
+          placeholder="Enter Affirmation"
+          onChangeText={setMessage}
+          style={Theme.textInput}
+          maxLength={100}
+        />
+        {isLoading && <LoadingSpinner viewStyle={{}} />}
+        <View style={style.actions}>
+          <Button
+            title={isLoading ? "Loading" : "Add"}
+            onPress={handleAdd}
+            isDisabled={isLoading}
+          />
+        </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };
