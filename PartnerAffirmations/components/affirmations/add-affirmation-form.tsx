@@ -4,9 +4,9 @@ import { Theme } from "@/constants/theme";
 import { Dispatch, SetStateAction, useState } from "react";
 import { KeyboardAvoidingView, Platform, TextInput, View } from "react-native";
 import Button from "../shared/button";
-import { addData } from "@/helpers/firebase-helper";
 import { Affirmation } from "@/constants/models/affirmation";
 import LoadingSpinner from "../shared/loading-spinner";
+import { addAffirmation } from "@/helpers/affirmation-helper";
 
 type AddAffirmationFormProps = {
   isLoading: boolean;
@@ -32,7 +32,7 @@ const AddAffirmationForm = ({
       setIsLoading(true);
 
       // Add to data base
-      await addData<Affirmation>("affirmations", new Affirmation(message!));
+      addAffirmation(new Affirmation(message));
       setMessage(undefined); // reset input
     } catch (error) {
       console.error("Failed to add team:", error);

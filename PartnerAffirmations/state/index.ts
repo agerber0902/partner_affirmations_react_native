@@ -2,8 +2,9 @@
 import {configureStore} from '@reduxjs/toolkit';
 import { combineReducers } from "redux";
 import userReducer from '../state/slices/user';
+import affirmationReducer from '../state/slices/affirmation';
 
-const rootReducer = combineReducers({ user: userReducer });
+const rootReducer = combineReducers({ user: userReducer, affirmation: affirmationReducer });
 
 export const makeStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({

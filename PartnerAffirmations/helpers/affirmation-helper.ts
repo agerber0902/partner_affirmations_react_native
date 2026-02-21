@@ -1,0 +1,84 @@
+import {
+  Affirmation,
+  affirmationMap,
+  TodaysAffirmation,
+} from "@/constants/models/affirmation";
+import { addData } from "./firebase-helper";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { firestore } from "@/config/firebase";
+import { useAuth } from "@/providers/auth-provider";
+
+const collectionName = "affirmations";
+
+export const addAffirmation = async (affirmation: Affirmation) => {
+  await addData<Affirmation>(collectionName, affirmation);
+};
+
+export const getTodaysAffirmation = async (
+  userId: string,
+): Promise<TodaysAffirmation | undefined> => {
+  const affirmationsRef = collection(firestore, collectionName);
+
+  const today = new Date();
+  const startOfDay = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    0,
+    0,
+    0,
+  );
+
+  const endOfDay = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    23,
+    59,
+    59,
+  );
+
+  // get affirmations with a recipient id of the user uid
+  const userAffirmationsQuery = query(
+    affirmationsRef,
+    where("recipientId", "==", userId),
+  );
+  const snapshot = await getDocs(userAffirmationsQuery);
+
+  if (snapshot.empty) {
+    return undefined;
+  }
+
+  const allAffirmations: Affirmation[] = snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return affirmationMap(data, doc.id);
+  });
+
+  // filter by date
+  const todaysAffirmations = allAffirmations.filter(
+    (a) =>
+      a.displayDate && a.displayDate >= startOfDay && a.displayDate <= endOfDay,
+  );
+
+  if(todaysAffirmations && todaysAffirmations.length > 0){
+    return {date: new Date(), affirmation: todaysAffirmations[0]};
+  }
+
+  const otherAffirmations = allAffirmations.filter(
+    (a) =>
+      !a.displayDate || a.displayDate < startOfDay || a.displayDate > endOfDay,
+  );
+
+  if(otherAffirmations && otherAffirmations.length > 0){
+    return {date: new Date(), affirmation: otherAffirmations[0]};
+  }
+
+  return undefined;
+};
