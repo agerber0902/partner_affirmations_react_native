@@ -7,6 +7,7 @@ import Button from "../shared/button";
 import LoadingSpinner from "../shared/loading-spinner";
 import { addAffirmation } from "@/helpers/affirmation-helper";
 import { useAuth } from "@/providers/auth-provider";
+import DatePicker from "../shared/date-picker";
 
 type AddAffirmationFormProps = {
   isLoading: boolean;
@@ -24,6 +25,9 @@ const AddAffirmationForm = ({
 
   const [message, setMessage] = useState<string | undefined>(undefined);
 
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [showDateModal, setShowDateModal] = useState<boolean>(false);
+
   const handleAdd = async () => {
     //TODO: Validate input
     if (message === undefined) {
@@ -34,7 +38,7 @@ const AddAffirmationForm = ({
       setIsLoading(true);
 
       // Add to data base
-      addAffirmation({message, recipientId: user!.uid, creatorId: user!.uid});
+      addAffirmation({ message, recipientId: user!.uid, creatorId: user!.uid, displayDate: selectedDate,});
       setMessage(undefined); // reset input
     } catch (error) {
       console.error("Failed to add affirmation:", error);
@@ -58,6 +62,19 @@ const AddAffirmationForm = ({
           style={Theme.textInput}
           maxLength={100}
         />
+
+        <View style={style.datePicker}>
+          <DatePicker
+            buttonText="Select Date"
+            visible={showDateModal}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            setVisible={setShowDateModal}
+            onClose={() => setShowDateModal(false)}
+            onSelect={() => {}}
+          />
+        </View>
+
         {isLoading && <LoadingSpinner viewStyle={{}} />}
         <View style={style.actions}>
           <Button

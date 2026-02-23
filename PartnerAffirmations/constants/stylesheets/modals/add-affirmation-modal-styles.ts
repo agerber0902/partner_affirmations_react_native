@@ -24,6 +24,9 @@ export const addAffirmationModalStyles = () =>
       paddingHorizontal: 15,
       marginBottom: 15,
     },
+    datePicker: {
+      padding: 5,
+    },
     actions: {
       display: "flex",
       width: "50%",
