@@ -12,7 +12,6 @@ const App = () => {
   const { user, authLoading } = useAuth();
 
   const isAuthenticated = user !== null;
-  console.log(isAuthenticated);
 
   return (
     <SafeAreaView style={styles.safeArea}>

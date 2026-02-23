@@ -12,10 +12,11 @@ export type FirebaseResponse = {
   error: string | undefined;
 };
 
-export const addData = async <T>(collectionName: string, data: T) => {
+export const addData = async <T extends { id?: string }>(collectionName: string, data: T) => {
+  const {id, ...dataToAdd} = data;
   try {
     const docRef = await addDoc(collection(firestore, collectionName), {
-      ...data,
+      ...dataToAdd,
       createdAt: serverTimestamp(),
     });
 
