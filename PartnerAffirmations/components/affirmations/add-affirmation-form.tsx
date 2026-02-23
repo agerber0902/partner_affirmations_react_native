@@ -4,9 +4,9 @@ import { Theme } from "@/constants/theme";
 import { Dispatch, SetStateAction, useState } from "react";
 import { KeyboardAvoidingView, Platform, TextInput, View } from "react-native";
 import Button from "../shared/button";
-import { Affirmation } from "@/constants/models/affirmation";
 import LoadingSpinner from "../shared/loading-spinner";
 import { addAffirmation } from "@/helpers/affirmation-helper";
+import { useAuth } from "@/providers/auth-provider";
 
 type AddAffirmationFormProps = {
   isLoading: boolean;
@@ -20,6 +20,8 @@ const AddAffirmationForm = ({
   const style = addAffirmationModalStyles();
   const modalStyle = sharedModalStyles();
 
+  const { user } = useAuth();
+
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   const handleAdd = async () => {
@@ -32,10 +34,10 @@ const AddAffirmationForm = ({
       setIsLoading(true);
 
       // Add to data base
-      addAffirmation(new Affirmation(message));
+      addAffirmation({message, recipientId: user!.uid, creatorId: user!.uid});
       setMessage(undefined); // reset input
     } catch (error) {
-      console.error("Failed to add team:", error);
+      console.error("Failed to add affirmation:", error);
     } finally {
       setTimeout(() => {
         setIsLoading(false);

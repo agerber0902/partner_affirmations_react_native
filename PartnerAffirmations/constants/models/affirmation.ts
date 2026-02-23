@@ -1,20 +1,22 @@
-export class Affirmation {
+export type Affirmation = {
   id?: string;
   message: string;
-  displayDate?: Date;
-  random: number;
-
-  constructor(mesage: string, displayDate?: Date, id?: string) {
-    this.message = mesage;
-    this.displayDate = displayDate;
-    this.random = Math.random();
-    this.id = id;
-  }
+  displayDate?: Date | null;
+  recipientId: string;
+  creatorId: string;
 }
 
 export type TodaysAffirmation = {
-  date: Date,
-  affirmation: Affirmation | undefined,
-}
+  date: Date;
+  affirmation: Affirmation | undefined;
+};
 
-export const affirmationMap = (data: any, id: string) => new Affirmation(data.message, data.displayDate, id);
+export const affirmationMap = (data: any, id: string): Affirmation => {
+  return {
+    id: id,
+    message: data.message,
+    displayDate: data.displayDate,
+    recipientId: data.recipientId,
+    creatorId: data.creatorId,
+  };
+}

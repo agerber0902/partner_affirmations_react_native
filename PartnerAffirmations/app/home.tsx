@@ -26,7 +26,6 @@ const Home = ({ isVisible }: HomeProps) => {
     useState<boolean>(false);
 
   const toggleAddAffirmationVisibleState = () => {
-    console.log("toggle");
     setIsAddAffirmationVisible(!isAddAffirmationVisible);
   };
 
@@ -39,7 +38,6 @@ const Home = ({ isVisible }: HomeProps) => {
       ) {
         const affirmation = await getTodaysAffirmation(user!.uid);
         dispatch(setTodaysAffirmation(affirmation));
-        console.log(affirmation);
       }
     };
 

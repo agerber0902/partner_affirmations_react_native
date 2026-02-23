@@ -7,13 +7,11 @@ import { addData } from "./firebase-helper";
 import {
   collection,
   getDocs,
-  limit,
-  orderBy,
   query,
   where,
 } from "firebase/firestore";
 import { firestore } from "@/config/firebase";
-import { useAuth } from "@/providers/auth-provider";
+import { getRandomItem } from "./app_helper";
 
 const collectionName = "affirmations";
 
@@ -68,16 +66,17 @@ export const getTodaysAffirmation = async (
   );
 
   if(todaysAffirmations && todaysAffirmations.length > 0){
-    return {date: new Date(), affirmation: todaysAffirmations[0]};
-  }
+    return {date: new Date(), affirmation: getRandomItem(todaysAffirmations)};
+  };
 
   const otherAffirmations = allAffirmations.filter(
     (a) =>
-      !a.displayDate || a.displayDate < startOfDay || a.displayDate > endOfDay,
+      todaysAffirmations.length <= 0 || todaysAffirmations.findIndex((t) => t.id === a.id) !== -1
   );
 
   if(otherAffirmations && otherAffirmations.length > 0){
-    return {date: new Date(), affirmation: otherAffirmations[0]};
+    // TODO: make this random
+    return {date: new Date(), affirmation: getRandomItem(otherAffirmations)};
   }
 
   return undefined;
