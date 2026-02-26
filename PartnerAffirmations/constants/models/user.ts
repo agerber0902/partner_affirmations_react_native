@@ -1,7 +1,5 @@
-export class User {
-    username: string;
-
-    constructor(username:string){
-        this.username = username;
-    }
+export interface AffirmationUser {
+    id: string | undefined;
+    uid: string;
+    name: string;
 }
