@@ -1,137 +1,166 @@
 import { Platform, TextStyle, ViewStyle } from "react-native";
 
-const WEB_FONT_STACK =
-  'system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+export const colors = {
+  background: "#F4F3EE", // Primary screen background (Parchment)
+  surface: "#F4E9CD", // Cards (Vanilla Cream)
+  primary: "#6A8D73", // Dusty Olive (CTA + active states)
+  primaryCtaText: "#F4F3EE", //Parchment to keep theme
+  accent: "#7A542E", // Olive Wood (minimal usage)
+  textPrimary: "#463F3A", // Taupe (main text)
+  textSecondary: "rgba(70,63,58,0.65)",
+  divider: "rgba(70,63,58,0.12)",
+  shadow: "rgba(70,63,58,0.08)",
+  loadingSpinner: "#6A8D73",
+};
 
-const textColor = "#040303";
-const cardColor = "#6A7B76";
-const secondaryColor = "#8B9D83";
-const primaryColor = "#BEB0A7";
-const backgroundColor = "#3A4E48";
+export const typography = {
+  fontFamily: {
+    serif: Platform.OS === "web" ? "'Lora', serif" : "Lora_400Regular",
 
-export const Theme = {
-  dark: false,
-  colors: {
-    white: "#FFFF",
-    text: textColor,
-    card: cardColor,
-    secondary: secondaryColor,
-    background: backgroundColor,
-    primary: primaryColor,
-    border: "rgb(199, 199, 204)",
-    notification: "rgb(255, 69, 58)",
+    serifMedium: Platform.OS === "web" ? "'Lora', serif" : "Lora_500Medium",
+
+    sans: Platform.OS === "web" ? "'Inter', sans-serif" : "Inter_400Regular",
+
+    sansMedium:
+      Platform.OS === "web" ? "'Inter', sans-serif" : "Inter_500Medium",
+  },
+
+  sizes: {
+    greeting: 28,
+    affirmation: 24,
+    body: 16,
+    small: 14,
+    button: 16,
+  },
+
+  lineHeights: {
+    affirmation: 38, // ~1.6 ratio
+    body: 24,
+  },
+
+  letterSpacing: {
+    subtle: 0.3,
+    wide: 0.5,
+  },
+};
+
+export const spacing = {
+  xs: 8,
+  sm: 16,
+  md: 24,
+  lg: 32,
+  xl: 48,
+  xxl: 64,
+};
+
+export const radius = {
+  card: 24,
+  modal: 24,
+  button: 20,
+  full: 999,
+  shadow: 20,
+};
+export const shadows = {
+  card: {
+    shadowColor: colors.accent,
+    shadowOpacity: 0.08,
+    shadowRadius: radius.shadow,
+    shadowOffset: { width: 0, height: 8 },
+
+    elevation: 6,
   },
   modal: {
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#a19c9c",
-    elevation: 10,
-    shadowOpacity: 0.35,
-    shadowRadius: 25,
+    shadowColor: colors.accent,
+    shadowOpacity: 0.08,
+    shadowRadius: radius.shadow,
+    shadowOffset: { width: 0, height: 8 },
+
+    elevation: 6,
   },
   button: {
+    shadowColor: colors.accent,
+    shadowOpacity: 0.08,
+    shadowRadius: radius.button,
+    shadowOffset: { width: 0, height: 8 },
+
+    elevation: 6,
+  },
+};
+export const modal = {
+  borderRadius: radius.modal,
+  // Shadow
+  ...shadows.modal,
+};
+export const buttons = {
+  primary: {
     width: "100%",
     alignItems: "center",
 
     paddingVertical: 14,
-    borderRadius: 12,
-    backgroundColor: primaryColor,
+    paddingHorizontal: 5,
 
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 6,
-  } as ViewStyle,
+    backgroundColor: colors.primary,
+    color: colors.primaryCtaText,
 
+    // Shadow
+    ...shadows.button,
+
+    // Font
+    fontSize: typography.sizes.button,
+    letterSpacing: typography.letterSpacing.subtle,
+  },
+};
+
+export const inputText = {
+  background: colors.surface,
+  text: colors.textPrimary,
+  placeholder: colors.textSecondary,
+  border: "transparent",
+  borderFocus: colors.primary,
+  shadow: colors.accent,
+};
+
+export const motion = {
+  fadeSlow: 600,
+  fadeMedium: 400,
+  fadeFast: 250,
+  easing: "easeOut",
+};
+
+export const Theme = {
+  dark: false,
+  colors: colors,
+  typography: typography,
+  modal: modal,
+
+  // Buttons
+  primaryButton: buttons.primary,
   buttonPressed: {
     opacity: 0.8,
     transform: [{ scale: 0.98 }],
   },
 
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "400",
-    padding: 5,
-  } as TextStyle,
+  // Text Input
+  textInput: inputText,
+  
+  // Loading Spinner
+  loadingSpinner: {
+    display: "flex",
+    flex: 1,
 
-  textInput: {
-    width: "100%",
-    minHeight: 50,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 15,
-  } as TextStyle,
+    margin: "auto",
 
-  fonts: Platform.select({
-    web: {
-      regular: {
-        fontFamily: WEB_FONT_STACK,
-        fontWeight: "400",
-      },
-      medium: {
-        fontFamily: WEB_FONT_STACK,
-        fontWeight: "500",
-      },
-      bold: {
-        fontFamily: WEB_FONT_STACK,
-        fontWeight: "600",
-      },
-      heavy: {
-        fontFamily: WEB_FONT_STACK,
-        fontWeight: "700",
-      },
-      header: {
-        fontFamily: WEB_FONT_STACK,
-        fontSize: 20,
-      },
-    },
-    ios: {
-      regular: {
-        fontFamily: "System",
-        fontWeight: "400",
-      },
-      medium: {
-        fontFamily: "System",
-        fontWeight: "500",
-      },
-      bold: {
-        fontFamily: "System",
-        fontWeight: "600",
-      },
-      heavy: {
-        fontFamily: "System",
-        fontWeight: "700",
-      },
-      header: {
-        fontFamily: "System",
-        fontSize: 20,
-      },
-    },
-    default: {
-      regular: {
-        fontFamily: "sans-serif",
-        fontWeight: "normal",
-      },
-      medium: {
-        fontFamily: "sans-serif-medium",
-        fontWeight: "normal",
-      },
-      bold: {
-        fontFamily: "sans-serif",
-        fontWeight: "600",
-      },
-      heavy: {
-        fontFamily: "sans-serif",
-        fontWeight: "700",
-      },
-      header: {
-        fontFamily: "sans-serif",
-        fontSize: 20,
-      },
-    },
-  }),
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+
+    color: colors.loadingSpinner,
+  },
+
+  // Safe Area Container
+  safeArea: {
+    flex: 1,
+    backgroundColor: colors.background,
+    paddingHorizontal: spacing.md,
+  },
 };

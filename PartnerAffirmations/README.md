@@ -1,50 +1,29 @@
-# Welcome to your Expo app 👋
+# Partner Affirmations
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Description
+Partner Affirmations is a way to experience mindfulness and gratitude through re affirming messages. You can create affirmations for not only yourself, but also a partner. You are able to send yourself or someone else, a meaningful message on a specific date, or be suprised by a random affirmation.
 
-## Get started
+## Theme
+### Theme notes
+organic, yoga, mindful, grounded, and calm
 
-1. Install dependencies
+### Colors
+Dusty Olive (#6A8D73)
+Vanilla Cream (#F4E9CD)
+Parchment (#F4F3EE)
+Olive Wood (#7A542E)
+Taupe (#46F3A)
 
-   ```bash
-   npm install
-   ```
+Generated with coolors
 
-2. Start the app
+### Design
 
-   ```bash
-   npx expo start
-   ```
+#### Background
+Background Color: Vanilla Cream
 
-In the output, you'll find options to open the app in a
+### Card
+Background Color: Parchment
+Shadow Color: Olive Wood
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Primary Call To Actions
+Background Color: Dusty Olive
