@@ -20,7 +20,7 @@ export const headerStyles = () =>
         display: "flex",
 
         color: Theme.colors.primary,
-        fontFamily: Theme.fonts.header.fontFamily,
+        fontFamily: Theme.typography.fontFamily.sans,
         fontWeight: "700",
         fontSize: 35,
         fontStyle: "italic",

@@ -7,10 +7,14 @@ import { useAuth } from "@/providers/auth-provider";
 const Header = () => {
   const styles = headerStyles();
 
-  const {user} = useAuth();
+  const { user, isAuthenticated } = useAuth();
 
   return (
-    <FadeInView style={styles.headerContainer} duration={1000} visible={user !== undefined}>
+    <FadeInView
+      style={styles.headerContainer}
+      duration={1000}
+      visible={isAuthenticated}
+    >
       <Text style={styles.headerText}>Partner Affirmations</Text>
       <View style={styles.signOutContainer}>
         <SignOutButton />
