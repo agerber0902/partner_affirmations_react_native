@@ -5,6 +5,7 @@ export const sharedModalStyles = () =>
   StyleSheet.create({
     modalContainer: {
         width: "95%",
+        height: "auto",
         maxHeight: "90%",
         flex: 1,
 
@@ -17,7 +18,9 @@ export const sharedModalStyles = () =>
       ...Theme.modal,
 
       width: "100%",
-      height: "50%",
+      height: "auto",
+
+      padding: 5,
 
 
       backgroundColor: Theme.colors.secondary,

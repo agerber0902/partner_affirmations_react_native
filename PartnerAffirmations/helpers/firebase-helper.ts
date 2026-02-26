@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { auth, firestore } from "../config/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addUser } from "./user-helper";
 
 export type FirebaseResponse = {
   user: User | null;
@@ -55,6 +56,9 @@ export const signUp = async (
 
     await updateProfile(userCredential.user, { displayName });
     await userCredential.user.reload();
+
+    // Add user to firestore
+    await addUser(userCredential.user);
 
     return { user: userCredential.user, error: undefined };
   } catch (error: any) {
