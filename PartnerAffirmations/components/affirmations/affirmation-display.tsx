@@ -2,7 +2,8 @@ import { affirmationDisplayStyles } from "@/constants/stylesheets/components/aff
 import { getUser } from "@/helpers/user-helper";
 import { useAppSelector } from "@/state/hooks";
 import { useEffect, useState } from "react";
-import { Animated, Text } from "react-native";
+import { Text } from "react-native";
+import FadeInView from "../shared/fade-in-animated-view";
 
 const AffirmationDisplay = () => {
   const style = affirmationDisplayStyles();
@@ -27,12 +28,12 @@ const AffirmationDisplay = () => {
   return (
     <>
       {todaysAffirmation?.affirmation && (
-        <Animated.View style={style.container}>
+        <FadeInView style={style.container} duration={2000}>
           <Text style={style.message}>{creatorMessage}</Text>
           <Text style={style.message}>
             {todaysAffirmation?.affirmation?.message}
           </Text>
-        </Animated.View>
+        </FadeInView>
       )}
     </>
   );

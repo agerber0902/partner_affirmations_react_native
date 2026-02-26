@@ -7,12 +7,22 @@ const SignOutButton = () => {
   const { user } = useAuth();
 
   const handleSignOut = async () => {
+    if (!user) {
+      return undefined;
+    }
+
     const isSignedOut = await signOut();
     return isSignedOut;
   };
 
   return (
-    <>{user !== null && <Button title="Sign Out" onPress={handleSignOut} viewStyle={{backgroundColor: Theme.colors.secondary}}/>}</>
+    <>
+      <Button
+        title="Sign Out"
+        onPress={handleSignOut}
+        viewStyle={{ backgroundColor: Theme.colors.secondary }}
+      />
+    </>
   );
 };
 export default SignOutButton;

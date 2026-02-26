@@ -6,6 +6,8 @@ export const affirmationDisplayStyles = () =>
     container: {
       display: "flex",
       width: "90%",
+      marginLeft: "auto",
+      marginRight: "auto",
     },
     message: {
       color: Theme.colors.primary,

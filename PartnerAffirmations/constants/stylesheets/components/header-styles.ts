@@ -6,6 +6,7 @@ export const headerStyles = () =>
     headerContainer: {
         display: "flex",
         width: "100%",
+        height: "auto",
 
         flexDirection: "row",
         justifyContent: "space-between",

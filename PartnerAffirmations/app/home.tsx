@@ -2,6 +2,7 @@ import AffirmationDisplay from "@/components/affirmations/affirmation-display";
 import WelcomeMessage from "@/components/home/welcome-message";
 import AddAffirmationModal from "@/components/modals/add-affirmation-modal";
 import Button from "@/components/shared/button";
+import FadeInView from "@/components/shared/fade-in-animated-view";
 import { homeStyles } from "@/constants/stylesheets/home-styles";
 import { getTodaysAffirmation } from "@/helpers/affirmation-helper";
 import { useAuth } from "@/providers/auth-provider";
@@ -44,18 +45,6 @@ const Home = ({ isVisible }: HomeProps) => {
     getAffirmation();
   }, [user, dispatch, todaysAffirmation]);
 
-  // Animation
-  const opacity = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    if (isVisible) {
-      Animated.timing(opacity, {
-        toValue: 1,
-        duration: 1500,
-        useNativeDriver: true,
-      }).start();
-    }
-  }, [isVisible, opacity]);
-
   return (
     <>
       <AddAffirmationModal
@@ -63,7 +52,7 @@ const Home = ({ isVisible }: HomeProps) => {
         toggleVisibleState={toggleAddAffirmationVisibleState}
       />
 
-      <Animated.View style={[style.homeContainer, { opacity }]}>
+      <FadeInView style={style.homeContainer} visible={isVisible} duration={1000}>
         <View style={style.contentContainer}>
           <WelcomeMessage />
 
@@ -79,7 +68,7 @@ const Home = ({ isVisible }: HomeProps) => {
             />
           </Pressable>
         </View>
-      </Animated.View>
+      </FadeInView>
     </>
   );
 };
