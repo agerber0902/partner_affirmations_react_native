@@ -1,4 +1,4 @@
-import { AffirmationUser } from "@/constants/models/user";
+import { AffirmationUser, AffirmationUserMap } from "@/constants/models/user";
 import { addData } from "./firebase-helper";
 import { User } from "firebase/auth";
 import { collection, getDocs, limit, query, where } from "firebase/firestore";
@@ -12,18 +12,18 @@ export const addUser = async (user: User) => {
     id: undefined,
     uid: user.uid,
     name: user.displayName ?? "",
+    displayNameForPartner: user.displayName ?? "",
   });
 };
 
-export const getUser = async (id: string) => {
+export const getUser = async (id: string): Promise<AffirmationUser | undefined> => {
   const ref = collection(firestore, collectionName);
-
-  const userQuery = query(ref, where("creatorId", "==", id), limit(1));
+  const userQuery = query(ref, where("uid", "==", id), limit(1));
   const snapshot = await getDocs(userQuery);
 
   if(snapshot.empty){
     return undefined;
   }
 
-  return snapshot.docs[0]
+  return AffirmationUserMap(snapshot.docs[0].data(), snapshot.docs[0].data().id);
 };
