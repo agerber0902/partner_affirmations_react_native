@@ -12,7 +12,6 @@ export const colors = {
   shadow: "rgba(70,63,58,0.08)",
   loadingSpinner: "#6A8D73",
 };
-//
 
 export const typography = {
   fontFamily: {
@@ -60,11 +59,12 @@ export const radius = {
   button: 20,
   full: 999,
   shadow: 20,
+  tabs: 24,
 };
 export const shadows = {
   card: {
     shadowColor: colors.accent,
-    shadowOpacity: 0.08,
+    shadowOpacity: 0.4,
     shadowRadius: radius.shadow,
     shadowOffset: { width: 0, height: 8 },
 
@@ -72,7 +72,7 @@ export const shadows = {
   },
   modal: {
     shadowColor: colors.accent,
-    shadowOpacity: 0.08,
+    shadowOpacity: 0.4,
     shadowRadius: radius.shadow,
     shadowOffset: { width: 0, height: 8 },
 
@@ -80,7 +80,7 @@ export const shadows = {
   },
   button: {
     shadowColor: colors.accent,
-    shadowOpacity: 0.08,
+    shadowOpacity: 0.4,
     shadowRadius: radius.button,
     shadowOffset: { width: 0, height: 8 },
 

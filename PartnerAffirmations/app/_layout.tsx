@@ -6,6 +6,7 @@ import { useFonts, Cormorant_300Light, Cormorant_400Regular, Cormorant_500Medium
 import { SourceSans3_400Regular, SourceSans3_500Medium } from "@expo-google-fonts/source-sans-3";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import {StatusBar} from 'expo-status-bar';
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -29,7 +30,11 @@ export default function RootLayout() {
   return (
     <AuthProvider>
       <StoreProvder>
-        <Stack screenOptions={{ headerShown: false }} />
+        <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+      </Stack>
+      <StatusBar style="auto" />
       </StoreProvder>
     </AuthProvider>
   );
