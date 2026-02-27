@@ -15,13 +15,8 @@ export const colors = {
 
 export const typography = {
   fontFamily: {
-    serif: "Lora_400Regular",
-
-    serifMedium: "Lora_500Medium",
-
-    sans: "Inter_400Regular",
-
-    sansMedium: "Inter_500Medium",
+    serif: "serif",
+    sans: "sans-serif",
   },
 
   sizes: {
