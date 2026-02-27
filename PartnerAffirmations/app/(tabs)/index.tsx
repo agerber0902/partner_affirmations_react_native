@@ -1,7 +1,7 @@
 import LoginModal from "@/components/modals/login-modal";
 import { useAuth } from "@/providers/auth-provider";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Home from "./home";
+import Home from "../home";
 import LoadingSpinner from "@/components/shared/loading-spinner";
 import Header from "@/components/header";
 import { indexStyles } from "@/constants/stylesheets/index-styles";
