@@ -1,7 +1,6 @@
 import { welcomeStyles } from "@/constants/stylesheets/components/welcome-styles";
-import { Theme } from "@/constants/theme";
 import { useAuth } from "@/providers/auth-provider";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import FadeInView from "../shared/fade-in-animated-view";
 
 const WelcomeMessage = () => {
