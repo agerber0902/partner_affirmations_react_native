@@ -15,14 +15,13 @@ export const colors = {
 
 export const typography = {
   fontFamily: {
-    serif: Platform.OS === "web" ? "'Lora', serif" : "Lora_400Regular",
+    serif: "Lora_400Regular",
 
-    serifMedium: Platform.OS === "web" ? "'Lora', serif" : "Lora_500Medium",
+    serifMedium: "Lora_500Medium",
 
-    sans: Platform.OS === "web" ? "'Inter', sans-serif" : "Inter_400Regular",
+    sans: "Inter_400Regular",
 
-    sansMedium:
-      Platform.OS === "web" ? "'Inter', sans-serif" : "Inter_500Medium",
+    sansMedium: "Inter_500Medium",
   },
 
   sizes: {
@@ -132,6 +131,7 @@ export const Theme = {
   colors: colors,
   typography: typography,
   modal: modal,
+  spacing: spacing,
 
   // Buttons
   primaryButton: buttons.primary,
