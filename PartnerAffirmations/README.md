@@ -9,7 +9,7 @@ organic, yoga, mindful, grounded, and calm
 
 ### Colors
 Dusty Olive (#6A8D73)
-Vanilla Cream (#F4E9CD)
+Vanilla Cream (#F4E9CD) ("#EDEBE6", //"#E8E1D3",)
 Parchment (#F4F3EE)
 Olive Wood (#7A542E)
 Taupe (#46F3A)
@@ -51,3 +51,9 @@ fontSize: 22,
 lineHeight: 32,
 letterSpacing: 0,
 color: "#463F3A"
+
+## Spacing
+### Affirmation Card Spacing
+Top padding: 48–64px
+Side padding: 24–32px
+Bottom padding: 48–64px

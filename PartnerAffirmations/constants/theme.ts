@@ -1,8 +1,8 @@
-import { Platform, TextStyle, ViewStyle } from "react-native";
+import { Platform, TextStyle } from "react-native";
 
 export const colors = {
   background: "#F4F3EE", // Primary screen background (Parchment)
-  surface: "#F4E9CD", // Cards (Vanilla Cream)
+  surface: "#e8e1d3fa", // Cards (Vanilla Cream)
   primary: "#6A8D73", // Dusty Olive (CTA + active states)
   primaryCtaText: "#F4F3EE", //Parchment to keep theme
   accent: "#7A542E", // Olive Wood (minimal usage)
@@ -12,10 +12,11 @@ export const colors = {
   shadow: "rgba(70,63,58,0.08)",
   loadingSpinner: "#6A8D73",
 };
+//
 
 export const typography = {
   fontFamily: {
-    serif: 'Cormorant_400Regular',
+    serif: "Cormorant_400Regular",
 
     serifMedium: "Cormorant_500Medium",
 
@@ -127,12 +128,25 @@ export const motion = {
   easing: "easeOut",
 };
 
+export const baseText = {
+  flexShrink: 1,
+
+  ...(Platform.OS === "web" && {
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+  }),
+  
+} as TextStyle;
+
 export const Theme = {
   dark: false,
   colors: colors,
   typography: typography,
   modal: modal,
   spacing: spacing,
+  baseText: baseText,
 
   // Buttons
   primaryButton: buttons.primary,
@@ -156,12 +170,34 @@ export const Theme = {
     alignSelf: "center",
 
     color: colors.loadingSpinner,
-  } as ViewStyle,
+  },
 
   // Safe Area Container
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
     paddingHorizontal: spacing.md,
+  },
+
+  // Card
+  card: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.card,
+    paddingVertical: spacing.xl,
+    paddingHorizontal: spacing.lg,
+    ...shadows.card,
+
+    flex: 0.9,
+  },
+
+  // Affirmation Text
+  affirmationText: {
+    ...baseText,
+    fontFamily: typography.fontFamily.serif,
+    fontSize: typography.sizes.affirmation,
+    lineHeight: typography.lineHeights.affirmation,
+    textAlign: "center",
+    color: colors.textPrimary,
+    letterSpacing: typography.letterSpacing.subtle,
   },
 };
