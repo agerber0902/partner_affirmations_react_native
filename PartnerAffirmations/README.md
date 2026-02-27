@@ -27,3 +27,27 @@ Shadow Color: Olive Wood
 
 ### Primary Call To Actions
 Background Color: Dusty Olive
+fontFamily: "SourceSans3_500Medium",
+fontSize: 15,
+letterSpacing: 0.5,
+
+### Greeting (used as Welcome message or header text)
+fontFamily: "Cormorant_400Regular",
+fontSize: 28,
+lineHeight: 34,
+letterSpacing: -0.2,
+color: "#463F3A"
+
+### Subline
+fontFamily: "SourceSans3_400Regular",
+fontSize: 16,
+lineHeight: 24,
+letterSpacing: 0.2,
+color: "rgba(70,63,58,0.75)"
+
+### Affirmation Text
+fontFamily: "Cormorant_400Regular",
+fontSize: 22,
+lineHeight: 32,
+letterSpacing: 0,
+color: "#463F3A"

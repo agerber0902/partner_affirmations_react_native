@@ -1,4 +1,5 @@
 import { welcomeStyles } from "@/constants/stylesheets/components/welcome-styles";
+import { Theme } from "@/constants/theme";
 import { useAuth } from "@/providers/auth-provider";
 import { View, Text } from "react-native";
 
@@ -22,7 +23,7 @@ const WelcomeMessage = () => {
   return (
     <>
       <View>
-        <Text id="welcome-header" style={welcomeStyles.welcomeText}>{getWelcomeMessage().welcomeMessage}</Text>
+        <Text id="welcome-header" style={[welcomeStyles.welcomeText]}>{getWelcomeMessage().welcomeMessage}</Text>
         <Text id="welcome-sub-header" style={welcomeStyles.welcomeSubText}>{getWelcomeMessage().welcomeSubMessage}</Text>
       </View>
     </>

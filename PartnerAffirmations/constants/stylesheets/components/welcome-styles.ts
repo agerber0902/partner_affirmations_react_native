@@ -11,7 +11,7 @@ export const welcomeStyles =
       fontSize: Theme.typography.sizes.greeting,
       color: Theme.colors.textPrimary,
       marginTop: Theme.spacing.xl,
-      letterSpacing: Theme.typography.letterSpacing.subtle,
+      letterSpacing: Theme.typography.letterSpacing.greeting,
     },
     welcomeSubText: {
       fontFamily: Theme.typography.fontFamily.sans,

@@ -15,8 +15,13 @@ export const colors = {
 
 export const typography = {
   fontFamily: {
-    serif: "serif",
-    sans: "sans-serif",
+    serif: 'Cormorant_400Regular',
+
+    serifMedium: "Cormorant_500Medium",
+
+    sans: "SourceSans3_400Regular",
+
+    sansMedium: "SourceSans3_500Medium",
   },
 
   sizes: {
@@ -33,6 +38,7 @@ export const typography = {
   },
 
   letterSpacing: {
+    greeting: -0.2,
     subtle: 0.3,
     wide: 0.5,
   },
@@ -137,7 +143,7 @@ export const Theme = {
 
   // Text Input
   textInput: inputText,
-  
+
   // Loading Spinner
   loadingSpinner: {
     display: "flex",
@@ -150,7 +156,7 @@ export const Theme = {
     alignSelf: "center",
 
     color: colors.loadingSpinner,
-  },
+  } as ViewStyle,
 
   // Safe Area Container
   safeArea: {
