@@ -55,7 +55,7 @@ const WelcomeMessage = () => {
           duration={welcomeSubHeaderAnimationDuration}
           visible={isAuthenticated}
         >
-          <Text id="welcome-sub-header" style={welcomeStyles.welcomeSubText}>
+          <Text id="welcome-sub-header" style={welcomeStyles.welcomeSubText} numberOfLines={1} ellipsizeMode="tail">
             {getWelcomeMessage().welcomeSubMessage}
           </Text>
         </FadeInView>

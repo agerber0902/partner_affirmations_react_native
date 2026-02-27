@@ -19,9 +19,10 @@ export const welcomeStyles =
       lineHeight: Theme.typography.lineHeights.body,
       letterSpacing: Theme.typography.letterSpacing.subtle,
 
-      textAlign: "center",
       marginTop: Theme.spacing.xs,
 
       color: Theme.colors.textSecondary,
+
+      ...Theme.baseText,
     },
   });
