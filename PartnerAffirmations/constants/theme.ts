@@ -1,16 +1,25 @@
 import { Platform, TextStyle } from "react-native";
 
 export const colors = {
-  background: "#F4F3EE", // Primary screen background (Parchment)
-  surface: "#e8e1d3fa", // Cards (Vanilla Cream)
-  primary: "#6A8D73", // Dusty Olive (CTA + active states)
-  primaryCtaText: "#F4F3EE", //Parchment to keep theme
-  accent: "#7A542E", // Olive Wood (minimal usage)
-  textPrimary: "#463F3A", // Taupe (main text)
-  textSecondary: "rgba(70,63,58,0.65)",
-  divider: "rgba(70,63,58,0.12)",
-  shadow: "rgba(70,63,58,0.08)",
-  loadingSpinner: "#6A8D73",
+  background: '#F6F0EA',
+  tabBackground: '#F6F0EA',
+
+  card: '#F9F2EE',
+
+  primaryText: '#42382e',
+  secondaryText: '#605b42',
+
+  primaryButton: '#898973',
+  primaryButtonText: '#F6F0EA',
+
+  affirmation: '#6b6158',
+
+  primary: '#898973',
+
+  accent: "#7A542E",
+
+  tabInactive: "#b9ac98",
+  tabActive: "#8f8964",
 };
 
 export const typography = {
@@ -100,8 +109,8 @@ export const buttons = {
     paddingVertical: 14,
     paddingHorizontal: 5,
 
-    backgroundColor: colors.primary,
-    color: colors.primaryCtaText,
+    backgroundColor: colors.primaryButton,
+    color: colors.primaryButtonText,
 
     // Shadow
     ...shadows.button,
@@ -112,14 +121,14 @@ export const buttons = {
   },
 };
 
-export const inputText = {
-  background: colors.surface,
-  text: colors.textPrimary,
-  placeholder: colors.textSecondary,
-  border: "transparent",
-  borderFocus: colors.primary,
-  shadow: colors.accent,
-};
+// export const inputText = {
+//   background: colors.surface,
+//   text: colors.textPrimary,
+//   placeholder: colors.textSecondary,
+//   border: "transparent",
+//   borderFocus: colors.primary,
+//   shadow: colors.accent,
+// };
 
 export const motion = {
   fadeSlow: 600,
@@ -156,7 +165,7 @@ export const Theme = {
   },
 
   // Text Input
-  textInput: inputText,
+  // textInput: inputText,
 
   // Loading Spinner
   loadingSpinner: {
@@ -169,7 +178,7 @@ export const Theme = {
     alignItems: "center",
     alignSelf: "center",
 
-    color: colors.loadingSpinner,
+    color: colors.primary,
   },
 
   // Safe Area Container
@@ -181,7 +190,7 @@ export const Theme = {
 
   // Card
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.card,
     borderRadius: radius.card,
     paddingVertical: spacing.xl,
     paddingHorizontal: spacing.lg,
@@ -197,7 +206,7 @@ export const Theme = {
     fontSize: typography.sizes.affirmation,
     lineHeight: typography.lineHeights.affirmation,
     textAlign: "center",
-    color: colors.textPrimary,
+    color: colors.affirmation,
     letterSpacing: typography.letterSpacing.subtle,
   },
 };

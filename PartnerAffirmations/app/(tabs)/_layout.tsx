@@ -11,8 +11,8 @@ const TabLayout = () => {
             borderTopLeftRadius: radius.tabs,
             borderTopRightRadius: radius.tabs,
         },
-        tabBarActiveTintColor: Theme.colors.primary,
-        tabBarInactiveTintColor: Theme.colors.surface,
+        tabBarActiveTintColor: Theme.colors.tabActive,
+        tabBarInactiveTintColor: Theme.colors.tabInactive,
       }}
     >
       <Tabs.Screen

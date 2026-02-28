@@ -16,6 +16,12 @@ Taupe (#46F3A)
 
 Generated with coolors
 
+New Color Pallette
+background: "#F6F0EA",
+surface: "#e8e1d3fa",
+card: "#F8F2EE",
+header: #564f44
+
 ### Design
 
 #### Background

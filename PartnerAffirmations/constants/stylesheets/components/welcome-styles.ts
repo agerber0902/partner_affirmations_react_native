@@ -9,7 +9,7 @@ export const welcomeStyles =
 
       fontFamily: Theme.typography.fontFamily.serif,
       fontSize: Theme.typography.sizes.greeting,
-      color: Theme.colors.textPrimary,
+      color: Theme.colors.primaryText,
       marginTop: Theme.spacing.xl,
       letterSpacing: Theme.typography.letterSpacing.greeting,
     },
@@ -21,7 +21,7 @@ export const welcomeStyles =
 
       marginTop: Theme.spacing.xs,
 
-      color: Theme.colors.textSecondary,
+      color: Theme.colors.secondaryText,
 
       ...Theme.baseText,
     },
