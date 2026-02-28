@@ -4,7 +4,7 @@ export const colors = {
   background: '#F6F0EA',
   tabBackground: '#F6F0EA',
 
-  card: '#F9F2EE',
+  card: '#fffcf9',//'#F9F2EE',
 
   primaryText: '#42382e',
   secondaryText: '#605b42',
@@ -24,7 +24,7 @@ export const colors = {
 
 export const typography = {
   fontFamily: {
-    serif: "Cormorant_400Regular",
+    serif: "Cormorant_300Light",
 
     serifMedium: "Cormorant_500Medium",
 
@@ -34,7 +34,7 @@ export const typography = {
   },
 
   sizes: {
-    greeting: 28,
+    greeting: 30,
     affirmation: 24,
     body: 16,
     small: 14,
