@@ -8,7 +8,7 @@ type LoadingSpinnerProps = {
 const LoadingSpinner = ({viewStyle} : LoadingSpinnerProps) => {
     return (
         <View style={viewStyle}>
-            <ActivityIndicator size="large" color={Theme.colors.card} />
+            <ActivityIndicator size="large" color={Theme.colors.primary} />
         </View>
     );
 };

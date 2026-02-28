@@ -8,25 +8,7 @@ export const headerStyles = () =>
         width: "100%",
         height: "auto",
 
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
+        paddingBottom: Theme.spacing.sm,
 
-        paddingTop: 15,
-        paddingBottom: 15,
-
-    },
-    headerText: {
-        display: "flex",
-
-        color: Theme.colors.primary,
-        fontFamily: Theme.fonts.header.fontFamily,
-        fontWeight: "700",
-        fontSize: 35,
-        fontStyle: "italic",
-    },
-    signOutContainer: {
-        minWidth: "15%",
-        
     },
 });
