@@ -1,5 +1,8 @@
 import { Platform, TextStyle, ViewStyle } from "react-native";
 
+export const baseAnimationDuration = 1000;
+export const baseAnimationDelayDuration = baseAnimationDuration / 2;
+
 export const colors = {
   background: "#F6F0EA",
   tabBackground: "#F6F0EA",

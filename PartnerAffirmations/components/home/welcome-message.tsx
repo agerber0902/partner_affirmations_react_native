@@ -2,12 +2,13 @@ import { welcomeStyles } from "@/constants/stylesheets/components/welcome-styles
 import { useAuth } from "@/providers/auth-provider";
 import { Text } from "react-native";
 import FadeInView from "../shared/fade-in-animated-view";
+import { baseAnimationDuration } from "@/constants/theme";
 
 const WelcomeMessage = () => {
   const { displayName, isAuthenticated } = useAuth();
 
   // Animation order goes view, then twice the amount of time as the preceeding animation
-  const viewAnimationDuration = 1000;
+  const viewAnimationDuration = baseAnimationDuration;
   const welcomeHeaderAnimationDuration = viewAnimationDuration * 2;
   const welcomeSubHeaderAnimationDuration = welcomeHeaderAnimationDuration * 2;
 

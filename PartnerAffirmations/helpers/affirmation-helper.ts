@@ -75,7 +75,6 @@ export const getTodaysAffirmation = async (
   );
 
   if(otherAffirmations && otherAffirmations.length > 0){
-    // TODO: make this random
     return {date: new Date(), affirmation: getRandomItem(otherAffirmations)};
   }
 
