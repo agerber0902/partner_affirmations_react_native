@@ -11,8 +11,8 @@ type ButtonProps = {
 
 const Button = ({title, viewStyle, textStyle, onPress, isDisabled = false}: ButtonProps) => {
   return (
-    <Pressable onPress={onPress} style={[Theme.button, viewStyle]} disabled={isDisabled}>
-      <Text style={[Theme.buttonText, textStyle]}>{title}</Text>
+    <Pressable onPress={onPress} style={[Theme.primaryButton as ViewStyle, viewStyle]} disabled={isDisabled}>
+      <Text numberOfLines={2} ellipsizeMode="tail" style={[Theme.primaryButtonText, textStyle]}>{title}</Text>
     </Pressable>
   );
 };

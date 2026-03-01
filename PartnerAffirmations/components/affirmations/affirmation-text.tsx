@@ -8,7 +8,7 @@ const AffirmationText = () => {
   return (
     <>
       <FadeInView style={style.textContainer}>
-        <Text numberOfLines={2} ellipsizeMode="tail" style={style.textContent}>You are the designer of your best life</Text>
+        <Text numberOfLines={3} ellipsizeMode="tail" style={style.textContent}>You are the designer of your best life</Text>
       </FadeInView>
     </>
   );

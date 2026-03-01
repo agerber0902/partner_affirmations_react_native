@@ -21,7 +21,7 @@ export const welcomeStyles =
 
       marginTop: Theme.spacing.xs,
 
-      color: Theme.colors.secondaryText,
+      color: Theme.colors.primary,
 
       ...Theme.baseText,
     },
