@@ -1,25 +1,25 @@
-import { Platform, TextStyle } from "react-native";
+import { Platform, TextStyle, ViewStyle } from "react-native";
 
 export const colors = {
-  background: '#F6F0EA',
-  tabBackground: '#F6F0EA',
+  background: "#F6F0EA",
+  tabBackground: "#F6F0EA",
 
-  card: '#fffcf9',//'#F9F2EE',
+  card: "#fffcf9", //'#F9F2EE',
 
-  primaryText: '#42382e',
-  secondaryText: '#605b42',
+  primaryText: "#42382e",
+  secondaryText: "#605b42",
 
-  primaryButton: '#898973',
-  primaryButtonText: '#F6F0EA',
+  primaryButton: "#898973",
+  primaryButtonText: "#F6F0EA",
 
-  affirmation: '#6b6158',
+  affirmation: "#6b6158",
 
-  primary: '#898973',
+  primary: "#898973",
 
   accent: "#7A542E",
 
   tabInactive: "#b9ac98",
-  tabActive: "#8f8964",
+  tabActive: "#898973",//"#8f8964",
 };
 
 export const typography = {
@@ -65,7 +65,7 @@ export const spacing = {
 export const radius = {
   card: 24,
   modal: 24,
-  button: 20,
+  button: 16,
   full: 999,
   shadow: 20,
   tabs: 24,
@@ -115,10 +115,19 @@ export const buttons = {
     // Shadow
     ...shadows.button,
 
+    // Radius
+    borderRadius: radius.button,
+  } as ViewStyle,
+  primaryText: {
     // Font
     fontSize: typography.sizes.button,
     letterSpacing: typography.letterSpacing.subtle,
-  },
+
+    color: colors.primaryButtonText,
+
+    textAlign: 'center',
+    
+  } as TextStyle,
 };
 
 // export const inputText = {
@@ -146,7 +155,6 @@ export const baseText = {
     WebkitBoxOrient: "vertical",
     overflow: "hidden",
   }),
-  
 } as TextStyle;
 
 export const Theme = {
@@ -159,6 +167,7 @@ export const Theme = {
 
   // Buttons
   primaryButton: buttons.primary,
+  primaryButtonText: buttons.primaryText,
   buttonPressed: {
     opacity: 0.8,
     transform: [{ scale: 0.98 }],

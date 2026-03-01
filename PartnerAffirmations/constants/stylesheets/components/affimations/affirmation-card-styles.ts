@@ -1,12 +1,22 @@
 import { StyleSheet } from "react-native";
-import { Theme } from "../../../theme";
+import { spacing, Theme } from "../../../theme";
+import { sharedCardStyles } from "../shared/shared-card-styles";
 
 export const affirmationCardStyles = StyleSheet.create({
     cardContainer: {
-        ...Theme.card
+        ...sharedCardStyles.cardContainer,
     },
     cardContent: {
-        margin: 'auto',
+        ...sharedCardStyles.cardContent,
+        
+    },
+    cardTitle: {
+        display: 'flex',
         width: '100%',
+    },
+    cardButton: {
+        width: '50%',
+        marginTop: spacing.xxl,
+        marginHorizontal: 'auto',
     },
 });
