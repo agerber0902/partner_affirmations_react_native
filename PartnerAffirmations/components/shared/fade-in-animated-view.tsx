@@ -4,6 +4,7 @@ import { Animated, ViewStyle } from "react-native";
 type FadeInViewProps = {
   children: React.ReactNode;
   duration?: number;
+  delay?: number;
   style?: ViewStyle | ViewStyle[];
   visible?: boolean;
 };
@@ -11,6 +12,7 @@ type FadeInViewProps = {
 const FadeInView = ({
   children,
   duration = 1000,
+  delay,
   style,
   visible = true,
 }: FadeInViewProps) => {
@@ -21,10 +23,11 @@ const FadeInView = ({
       Animated.timing(opacity, {
         toValue: 1,
         duration,
+        delay,
         useNativeDriver: true,
       }).start();
     }
-  }, [visible, opacity, duration]);
+  }, [visible, opacity, duration, delay]);
 
   return <Animated.View style={[{ opacity }, style]}>{children}</Animated.View>;
 };

@@ -16,6 +16,15 @@ const TabLayout = () => {
       }}
     >
       <Tabs.Screen
+        name="affirmations"
+        options={{
+          title: "Affirmations",
+          tabBarIcon: ({focused, color, size }) => (
+            <Ionicons name="albums-outline" size={size + (focused ? 3 : 0)} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="index"
         options={{
           title: "Home",

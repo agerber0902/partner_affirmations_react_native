@@ -2,12 +2,14 @@ import { welcomeStyles } from "@/constants/stylesheets/components/welcome-styles
 import { useAuth } from "@/providers/auth-provider";
 import { Text } from "react-native";
 import FadeInView from "../shared/fade-in-animated-view";
+import { baseAnimationDuration } from "@/constants/theme";
+import Header from "../shared/header";
 
 const WelcomeMessage = () => {
   const { displayName, isAuthenticated } = useAuth();
 
   // Animation order goes view, then twice the amount of time as the preceeding animation
-  const viewAnimationDuration = 1000;
+  const viewAnimationDuration = baseAnimationDuration;
   const welcomeHeaderAnimationDuration = viewAnimationDuration * 2;
   const welcomeSubHeaderAnimationDuration = welcomeHeaderAnimationDuration * 2;
 
@@ -42,24 +44,36 @@ const WelcomeMessage = () => {
 
   return (
     <>
-      <FadeInView duration={viewAnimationDuration} visible={isAuthenticated}>
-        <FadeInView
-          duration={welcomeHeaderAnimationDuration}
-          visible={isAuthenticated}
-        >
-          <Text id="welcome-header" style={[welcomeStyles.welcomeText]} numberOfLines={3} ellipsizeMode="tail">
-            {getWelcomeMessage().welcomeMessage}
-          </Text>
+      <Header>
+        <FadeInView duration={viewAnimationDuration} visible={isAuthenticated}>
+          <FadeInView
+            duration={welcomeHeaderAnimationDuration}
+            visible={isAuthenticated}
+          >
+            <Text
+              id="welcome-header"
+              style={[welcomeStyles.welcomeText]}
+              numberOfLines={3}
+              ellipsizeMode="tail"
+            >
+              {getWelcomeMessage().welcomeMessage}
+            </Text>
+          </FadeInView>
+          <FadeInView
+            duration={welcomeSubHeaderAnimationDuration}
+            visible={isAuthenticated}
+          >
+            <Text
+              id="welcome-sub-header"
+              style={welcomeStyles.welcomeSubText}
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            >
+              {getWelcomeMessage().welcomeSubMessage}
+            </Text>
+          </FadeInView>
         </FadeInView>
-        <FadeInView
-          duration={welcomeSubHeaderAnimationDuration}
-          visible={isAuthenticated}
-        >
-          <Text id="welcome-sub-header" style={welcomeStyles.welcomeSubText} numberOfLines={2} ellipsizeMode="tail">
-            {getWelcomeMessage().welcomeSubMessage}
-          </Text>
-        </FadeInView>
-      </FadeInView>
+      </Header>
     </>
   );
 };

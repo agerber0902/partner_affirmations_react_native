@@ -1,26 +1,28 @@
 import { useAuth } from "@/providers/auth-provider";
 import FadeInView from "../shared/fade-in-animated-view";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import AffirmationText from "./affirmation-text";
 import Button from "../shared/button";
 import { affirmationCardStyles } from "@/constants/stylesheets/components/affimations/affirmation-card-styles";
+import { baseAnimationDelayDuration, baseAnimationDuration } from "@/constants/theme";
 
 const AffirmationCard = () => {
   const { isAuthenticated } = useAuth();
-  const style = affirmationCardStyles;
+
   return (
     <>
       <FadeInView
-        duration={2000}
+        duration={baseAnimationDuration}
+        delay={baseAnimationDelayDuration * 3}
         visible={isAuthenticated}
-        style={style.cardContainer}
+        style={affirmationCardStyles.cardContainer}
       >
-        <View style={style.cardContent}>
-          <View style={style.cardTitle}>
+        <View style={affirmationCardStyles.cardContent}>
+          <View style={affirmationCardStyles.cardTitle}>
             <AffirmationText />
           </View>
 
-          <View style={style.cardButton}>
+          <View style={affirmationCardStyles.cardButton}>
             <Button onPress={() => {}} title={"Next Affirmation"} />
           </View>
         </View>

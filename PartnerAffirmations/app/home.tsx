@@ -4,12 +4,13 @@ import AddAffirmationModal from "@/components/modals/add-affirmation-modal";
 import Button from "@/components/shared/button";
 import FadeInView from "@/components/shared/fade-in-animated-view";
 import { homeStyles } from "@/constants/stylesheets/home-styles";
+import { animationTiming } from "@/constants/theme";
 import { getTodaysAffirmation } from "@/helpers/affirmation-helper";
 import { useAuth } from "@/providers/auth-provider";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { setTodaysAffirmation } from "@/state/slices/affirmation";
-import { useEffect, useRef, useState } from "react";
-import { Animated, Pressable, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Pressable, View } from "react-native";
 
 type HomeProps = {
   isVisible: boolean;
@@ -52,7 +53,7 @@ const Home = ({ isVisible }: HomeProps) => {
         toggleVisibleState={toggleAddAffirmationVisibleState}
       />
 
-      <FadeInView style={style.homeContainer} visible={isVisible} duration={1000}>
+      <FadeInView style={style.homeContainer} visible={isVisible} duration={animationTiming.firstAnimation}>
         <View style={style.contentContainer}>
           <WelcomeMessage />
 
