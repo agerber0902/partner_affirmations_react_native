@@ -5,7 +5,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  Text,
   TextInput,
   View,
 } from "react-native";
@@ -13,6 +12,7 @@ import Button from "../shared/button";
 import { signIn, signUp } from "@/helpers/firebase-helper";
 import { useAuth } from "@/providers/auth-provider";
 import { Theme } from "@/constants/theme";
+import SharedText from "../shared/shared-text";
 
 type LoginFormProps = {
   isLogin: boolean;
@@ -78,7 +78,7 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
           autoComplete="password"
         />
 
-        {error && <Text style={styles.error}>{error}</Text>}
+        {error && <SharedText numberOfLines={1} style={styles.error} text={error}></SharedText>}
 
         <View style={styles.actions}>
           <Button
@@ -87,9 +87,7 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
           />
 
           <Pressable onPress={toggleLoginState}>
-            <Text style={styles.toggleAction}>
-              {isLogin ? "Create Account" : "Back to Login"}
-            </Text>
+            <SharedText style={styles.toggleAction} text={isLogin ? "Create Account" : "Back to Login"} />
           </Pressable>
         </View>
       </KeyboardAvoidingView>

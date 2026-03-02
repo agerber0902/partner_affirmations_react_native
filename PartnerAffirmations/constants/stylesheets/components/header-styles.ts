@@ -10,7 +10,6 @@ export const headerStyles = StyleSheet.create({
     paddingBottom: Theme.spacing.sm,
   },
   headerText: {
-    display: "flex",
     width: "100%",
 
     fontFamily: Theme.typography.fontFamily.serif,
@@ -18,8 +17,11 @@ export const headerStyles = StyleSheet.create({
     color: Theme.colors.primaryText,
     marginTop: Theme.spacing.xl,
     letterSpacing: Theme.typography.letterSpacing.greeting,
+
+    ...Theme.baseText,
   },
   headerSubText: {
+    width: "100%",
     fontFamily: Theme.typography.fontFamily.sans,
     fontSize: Theme.typography.sizes.small,
     lineHeight: Theme.typography.lineHeights.body,
