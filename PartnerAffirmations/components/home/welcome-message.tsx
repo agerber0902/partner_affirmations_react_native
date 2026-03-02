@@ -9,11 +9,6 @@ import SharedText from "../shared/shared-text";
 const WelcomeMessage = () => {
   const { displayName, isAuthenticated } = useAuth();
 
-  // Animation order goes view, then twice the amount of time as the preceeding animation
-  const viewAnimationDuration = baseAnimationDuration;
-  const welcomeHeaderAnimationDuration = viewAnimationDuration * 2;
-  const welcomeSubHeaderAnimationDuration = welcomeHeaderAnimationDuration * 2;
-
   const getWelcomeMessage = (): {
     welcomeMessage: string;
     welcomeSubMessage: string;
@@ -45,31 +40,12 @@ const WelcomeMessage = () => {
 
   return (
     <>
-      <Header>
-        <FadeInView duration={viewAnimationDuration} visible={isAuthenticated}>
-          <FadeInView
-            duration={welcomeHeaderAnimationDuration}
-            visible={isAuthenticated}
-          >
-            <SharedText
-              style={welcomeStyles.welcomeText}
-              numberOfLines={3}
-              text={getWelcomeMessage().welcomeMessage}
-            />
-            
-          </FadeInView>
-          <FadeInView
-            duration={welcomeSubHeaderAnimationDuration}
-            visible={isAuthenticated}
-          >
-            <SharedText
-              style={welcomeStyles.welcomeSubText}
-              numberOfLines={2}
-              text={getWelcomeMessage().welcomeSubMessage}
-            />
-          </FadeInView>
-        </FadeInView>
-      </Header>
+      <Header
+        headerText={getWelcomeMessage().welcomeMessage}
+        subHeaderText={getWelcomeMessage().welcomeSubMessage}
+        headerStyle={welcomeStyles.welcomeText}
+        subHeaderStyle={welcomeStyles.welcomeSubText}
+      />
     </>
   );
 };
