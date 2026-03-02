@@ -1,21 +1,24 @@
 import { headerStyles } from "@/constants/stylesheets/components/header-styles";
-import FadeInView from "./shared/fade-in-animated-view";
+import FadeInView from "./fade-in-animated-view";
 import { useAuth } from "@/providers/auth-provider";
-import WelcomeMessage from "./home/welcome-message";
 import { baseAnimationDuration } from "@/constants/theme";
+import React from "react";
 
-const Header = () => {
-  const styles = headerStyles();
+type HeaderProps = {
+  children: React.ReactNode;
+};
+
+const Header = ({ children } : HeaderProps) => {
 
   const { user, isAuthenticated } = useAuth();
 
   return (
     <FadeInView
-      style={styles.headerContainer}
+      style={headerStyles.headerContainer}
       duration={baseAnimationDuration}
       visible={isAuthenticated}
     >
-      <WelcomeMessage/>
+      {children}
     </FadeInView>
   );
 };

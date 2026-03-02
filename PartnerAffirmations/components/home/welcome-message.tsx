@@ -3,6 +3,7 @@ import { useAuth } from "@/providers/auth-provider";
 import { Text } from "react-native";
 import FadeInView from "../shared/fade-in-animated-view";
 import { baseAnimationDuration } from "@/constants/theme";
+import Header from "../shared/header";
 
 const WelcomeMessage = () => {
   const { displayName, isAuthenticated } = useAuth();
@@ -43,24 +44,36 @@ const WelcomeMessage = () => {
 
   return (
     <>
-      <FadeInView duration={viewAnimationDuration} visible={isAuthenticated}>
-        <FadeInView
-          duration={welcomeHeaderAnimationDuration}
-          visible={isAuthenticated}
-        >
-          <Text id="welcome-header" style={[welcomeStyles.welcomeText]} numberOfLines={3} ellipsizeMode="tail">
-            {getWelcomeMessage().welcomeMessage}
-          </Text>
+      <Header>
+        <FadeInView duration={viewAnimationDuration} visible={isAuthenticated}>
+          <FadeInView
+            duration={welcomeHeaderAnimationDuration}
+            visible={isAuthenticated}
+          >
+            <Text
+              id="welcome-header"
+              style={[welcomeStyles.welcomeText]}
+              numberOfLines={3}
+              ellipsizeMode="tail"
+            >
+              {getWelcomeMessage().welcomeMessage}
+            </Text>
+          </FadeInView>
+          <FadeInView
+            duration={welcomeSubHeaderAnimationDuration}
+            visible={isAuthenticated}
+          >
+            <Text
+              id="welcome-sub-header"
+              style={welcomeStyles.welcomeSubText}
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            >
+              {getWelcomeMessage().welcomeSubMessage}
+            </Text>
+          </FadeInView>
         </FadeInView>
-        <FadeInView
-          duration={welcomeSubHeaderAnimationDuration}
-          visible={isAuthenticated}
-        >
-          <Text id="welcome-sub-header" style={welcomeStyles.welcomeSubText} numberOfLines={2} ellipsizeMode="tail">
-            {getWelcomeMessage().welcomeSubMessage}
-          </Text>
-        </FadeInView>
-      </FadeInView>
+      </Header>
     </>
   );
 };

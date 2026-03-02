@@ -1,15 +1,12 @@
-import LoadingSpinner from "@/components/shared/loading-spinner";
-import { affirmationScreenStyles } from "@/constants/stylesheets/components/affimations/affirmation-screen-styles";
-import { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import AffirmationHeader from "@/components/affirmations/affirmation-header";
+import SharedSafeView from "@/components/shared/shared-safe-view";
 
 const AffirmationsScreen = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     return <>
-        <SafeAreaView style={affirmationScreenStyles.safeArea}>
-            {isLoading && <LoadingSpinner viewStyle={affirmationScreenStyles.loadingSpinner}/>}
-        </SafeAreaView>
+        <SharedSafeView header={<AffirmationHeader/>}>
+            <></>
+        </SharedSafeView>
     </>;
 };
 export default AffirmationsScreen;

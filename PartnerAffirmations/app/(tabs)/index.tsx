@@ -1,20 +1,15 @@
-import LoginModal from "@/components/modals/login-modal";
 import { useAuth } from "@/providers/auth-provider";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Home from "../home";
-import LoadingSpinner from "@/components/shared/loading-spinner";
-import Header from "@/components/header";
-import { indexStyles } from "@/constants/stylesheets/index-styles";
+import Header from "@/components/shared/header";
 import AffirmationCard from "@/components/affirmations/affirmation-card";
-import { Text } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { getTodaysAffirmation } from "@/helpers/affirmation-helper";
 import { setTodaysAffirmation } from "@/state/slices/affirmation";
+import SharedSafeView from "@/components/shared/shared-safe-view";
+import WelcomeMessage from "@/components/home/welcome-message";
 
 const App = () => {
   const { user, authLoading, isAuthenticated } = useAuth();
-  const styles = indexStyles;
 
   const dispatch = useAppDispatch();
   const { todaysAffirmation } = useAppSelector(
@@ -30,25 +25,20 @@ const App = () => {
           !todaysAffirmation ||
           todaysAffirmation.date.getDay() !== new Date().getDay()
         ) {
-          dispatch(setTodaysAffirmation(await getTodaysAffirmation(user?.uid ?? "")));
+          dispatch(
+            setTodaysAffirmation(await getTodaysAffirmation(user?.uid ?? "")),
+          );
         }
       }
     };
 
     getAffirmation();
-
   }, [user, isAuthenticated, todaysAffirmation, dispatch]);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      {authLoading && <LoadingSpinner viewStyle={styles.loadingSpinner} />}
-      <Header />
-
+    <SharedSafeView header={<WelcomeMessage />}>
       <AffirmationCard />
-
-      {/* <LoginModal />
-      {!authLoading && isAuthenticated && <Home isVisible={!authLoading && isAuthenticated}/>} */}
-    </SafeAreaView>
+    </SharedSafeView>
   );
 };
 export default App;

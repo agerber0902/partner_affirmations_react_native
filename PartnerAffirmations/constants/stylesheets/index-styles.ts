@@ -1,7 +1,7 @@
-import { StyleSheet, ViewStyle } from "react-native";
-import { Theme } from "../theme";
+import { StyleSheet } from "react-native";
+import { sharedSafeViewStyles } from "./components/shared/shared-safe-view-styles";
 
 export const indexStyles = StyleSheet.create({
-  safeArea: Theme.safeArea,
-  loadingSpinner: Theme.loadingSpinner as ViewStyle,
+  safeArea: sharedSafeViewStyles.safeArea,
+  loadingSpinner: sharedSafeViewStyles.loadingSpinner,
 });
