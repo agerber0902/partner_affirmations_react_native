@@ -1,9 +1,7 @@
 import { sharedModalStyles } from "@/constants/stylesheets/modals/shared-modal-styles";
-import {
-  Text,
-  View,
-} from "react-native";
+import { View } from "react-native";
 import Modal from "react-native-modal";
+import SharedText from "../shared-text";
 
 type ModalProps = {
   header: string;
@@ -13,9 +11,14 @@ type ModalProps = {
   onBackDropPress?: () => void;
 };
 
-const SharedModal = ({header, modalContent, isVisible, onRequestClose, onBackDropPress}: ModalProps) => {
+const SharedModal = ({
+  header,
+  modalContent,
+  isVisible,
+  onRequestClose,
+  onBackDropPress,
+}: ModalProps) => {
   const styles = sharedModalStyles();
-
 
   return (
     <Modal
@@ -28,9 +31,7 @@ const SharedModal = ({header, modalContent, isVisible, onRequestClose, onBackDro
       onBackButtonPress={onRequestClose}
     >
       <View style={styles.modalView}>
-        <Text style={styles.modalHeader}>
-          {header}
-        </Text>
+        <SharedText style={styles.modalHeader} text={header} />
         {modalContent}
       </View>
     </Modal>

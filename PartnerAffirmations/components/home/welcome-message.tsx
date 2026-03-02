@@ -4,6 +4,7 @@ import { Text } from "react-native";
 import FadeInView from "../shared/fade-in-animated-view";
 import { baseAnimationDuration } from "@/constants/theme";
 import Header from "../shared/header";
+import SharedText from "../shared/shared-text";
 
 const WelcomeMessage = () => {
   const { displayName, isAuthenticated } = useAuth();
@@ -50,27 +51,22 @@ const WelcomeMessage = () => {
             duration={welcomeHeaderAnimationDuration}
             visible={isAuthenticated}
           >
-            <Text
-              id="welcome-header"
-              style={[welcomeStyles.welcomeText]}
+            <SharedText
+              style={welcomeStyles.welcomeText}
               numberOfLines={3}
-              ellipsizeMode="tail"
-            >
-              {getWelcomeMessage().welcomeMessage}
-            </Text>
+              text={getWelcomeMessage().welcomeMessage}
+            />
+            
           </FadeInView>
           <FadeInView
             duration={welcomeSubHeaderAnimationDuration}
             visible={isAuthenticated}
           >
-            <Text
-              id="welcome-sub-header"
+            <SharedText
               style={welcomeStyles.welcomeSubText}
               numberOfLines={2}
-              ellipsizeMode="tail"
-            >
-              {getWelcomeMessage().welcomeSubMessage}
-            </Text>
+              text={getWelcomeMessage().welcomeSubMessage}
+            />
           </FadeInView>
         </FadeInView>
       </Header>
