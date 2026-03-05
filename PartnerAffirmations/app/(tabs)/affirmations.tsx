@@ -1,5 +1,6 @@
 import AffirmationHeader from "@/components/affirmations/affirmation-header";
 import AffirmationText from "@/components/affirmations/affirmation-text";
+import CreatedAffirmationView from "@/components/affirmations/created-affirmation-view";
 import AddAffirmationModal from "@/components/modals/add-affirmation-modal";
 import Button from "@/components/shared/button";
 import SharedCard from "@/components/shared/shared-card";
@@ -29,6 +30,10 @@ const AffirmationsScreen = () => {
     setShowModal(true);
   };
 
+  const editOrDeleteButtonPressed = () => {
+
+  };
+
   useEffect(() => {
     const getDisplayAffirmations = async () => {
       const createdAffirmations = await getUserCreatedAffirmations(
@@ -53,18 +58,26 @@ const AffirmationsScreen = () => {
           <SharedCard visible={true}>
             {(!userCreatedAffirmations ||
               userCreatedAffirmations.length <= 0) && (
-                <View style={affirmationCardStyles.noAffirmationTextContainer}>
-                  <SharedText style={[affirmationCardStyles.noAffirmationText, {textAlign: 'center'}]} numberOfLines={3} text="You do not have any affirmations yet, create as many as you like." />
-                </View>
-              
+              <View style={affirmationCardStyles.noAffirmationTextContainer}>
+                <SharedText
+                  style={[
+                    affirmationCardStyles.noAffirmationText,
+                    { textAlign: "center" },
+                  ]}
+                  numberOfLines={3}
+                  text="You do not have any affirmations yet, create as many as you like."
+                />
+              </View>
             )}
             <ScrollView scrollEnabled={true}>
               {userCreatedAffirmations.map((affirmation: Affirmation) => (
-                <AffirmationText
-                  key={affirmation.id}
-                  style={affirmationCardStyles.affirmation}
-                  text={affirmation.message}
-                />
+                <CreatedAffirmationView key={affirmation.id}>
+                  <AffirmationText
+                    key={affirmation.id}
+                    style={affirmationCardStyles.affirmation}
+                    text={affirmation.message}
+                  />
+                </CreatedAffirmationView>
               ))}
             </ScrollView>
             <Button onPress={createButtonPressed} title="Create Affirmation" />

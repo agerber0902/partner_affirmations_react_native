@@ -73,6 +73,7 @@ export const radius = {
   card: 24,
   modal: 24,
   button: 16,
+  affirmationView: 16,
   full: 999,
   shadow: 20,
   tabs: 24,
@@ -100,12 +101,22 @@ export const shadows = {
     shadowRadius: radius.button,
     shadowOffset: { width: 0, height: 8 },
 
-    elevation: 6,
+    elevation: 4,
   },
   textInput: {
     shadowColor: colors.accent,
     shadowOpacity: 0.2,
     shadowRadius: radius.button,
+    shadowOffset: { width: 0, height: 8 },
+    
+    outlineStyle: undefined,
+
+    elevation: 1,
+  },
+  affirmationView: {
+    shadowColor: colors.accent,
+    shadowOpacity: 0.5,
+    shadowRadius: radius.affirmationView,
     shadowOffset: { width: 0, height: 8 },
     
     outlineStyle: undefined,
