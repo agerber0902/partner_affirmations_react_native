@@ -4,9 +4,12 @@ import { Pressable, View } from "react-native";
 
 type CreatedAffirmationViewProps = {
     children: React.ReactNode;
+    affirmationId: string;
+    onEdit: (id: string) => void;
+    onDelete: (id: string) => void;
 }
 
-const CreatedAffirmationView = ({children}: CreatedAffirmationViewProps) => {
+const CreatedAffirmationView = ({children, affirmationId, onEdit, onDelete}: CreatedAffirmationViewProps) => {
     const affirmationText = children;
 
     return (<>
@@ -15,10 +18,10 @@ const CreatedAffirmationView = ({children}: CreatedAffirmationViewProps) => {
                 {affirmationText}
             </View>
             <View style={createdAffirmationViewStyles.actions}>
-                <Pressable onPress={undefined}>
+                <Pressable onPress={() => onEdit(affirmationId)}>
                     <Ionicons name="pencil" size={20} color={createdAffirmationViewStyles.actions.color} />
                 </Pressable>
-                <Pressable>
+                <Pressable onPress={() => onDelete(affirmationId)}>
                     <Ionicons name="trash" size={20} color={createdAffirmationViewStyles.actions.color}/>
                 </Pressable>
             </View>
