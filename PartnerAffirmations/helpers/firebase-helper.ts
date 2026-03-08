@@ -11,6 +11,7 @@ import {
   collection,
   serverTimestamp,
   doc,
+  updateDoc,
 } from "firebase/firestore";
 import { addUser } from "./user-helper";
 
@@ -33,6 +34,31 @@ export const addData = async <T extends { id?: string }>(
     return docRef.id;
   } catch (error) {
     console.error("Error adding document:", error);
+    throw error;
+  }
+};
+
+export const updateData = async <T extends { id?: string }>(
+  collectionName: string,
+  data: T,
+) => {
+  const { id, ...dataToUpdate } = data;
+
+  if(!id){
+    return;
+  }
+
+  try {
+    const docRef = doc(firestore, collectionName, id);
+
+    await updateDoc(docRef, {
+      ...dataToUpdate,
+      updatedAt: serverTimestamp(),
+    });
+
+    return id;
+  } catch (error) {
+    console.error("Error updating document:", error);
     throw error;
   }
 };

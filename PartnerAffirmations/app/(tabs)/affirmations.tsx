@@ -11,6 +11,7 @@ import { Affirmation } from "@/constants/models/affirmation";
 import { affirmationCardStyles } from "@/constants/stylesheets/components/affimations/affirmation-card-styles";
 import {
   deleteAffirmation,
+  editAffirmation,
   getUserCreatedAffirmations,
 } from "@/helpers/affirmation-helper";
 import { useAuth } from "@/providers/auth-provider";
@@ -30,6 +31,7 @@ const AffirmationsScreen = () => {
   const [selectedAffirmationId, setSelectedAffirmationId] =
     useState<string>("");
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
+  const [isEditLoading, setIsEditLoading] = useState<boolean>(false);
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showConfirmationModal, setShowConfirmationModal] =
@@ -53,6 +55,31 @@ const AffirmationsScreen = () => {
       setIsDeleteLoading(true);
 
       await deleteAffirmation(selectedAffirmationId);
+
+      // update
+      const createdAffirmations = await getUserCreatedAffirmations(
+        user?.uid ?? "0",
+      );
+
+      dispatch(setUserCreatedAffirmations(createdAffirmations));
+    } finally {
+      //  Add delay to make it not so jumpy
+      setTimeout(() => {
+        setIsDeleteLoading(false);
+        setShowConfirmationModal(false);
+      }, 1000);
+    }
+  };
+
+  const onEdit = async () => {
+    try {
+      setIsEditLoading(true);
+      const affirmtion = userCreatedAffirmations.find((a) => a.id === selectedAffirmationId)
+      if(!affirmtion){
+        return;
+      }
+      
+      await editAffirmation(affirmtion);
 
       // update
       const createdAffirmations = await getUserCreatedAffirmations(
