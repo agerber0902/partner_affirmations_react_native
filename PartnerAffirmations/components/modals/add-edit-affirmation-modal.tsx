@@ -1,5 +1,5 @@
 import SharedModal from "../shared/modals/shared-modal";
-import AddAffirmationForm from "../affirmations/add-affirmation-form";
+import AddOrEditAffirmationForm from "../affirmations/add-edit-affirmation-form";
 import { SetStateAction, useState, Dispatch } from "react";
 
 type AddAffirmationModalProps = {
@@ -20,7 +20,7 @@ const AddorEditAffirmationModal = ({
       onRequestClose={() => toggleVisibleState(false)}
       onBackDropPress={isLoading ? undefined : () => toggleVisibleState(false)}
       modalContent={
-      <AddAffirmationForm isLoading={isLoading} setIsLoading={setIsLoading} toggleViewState={toggleVisibleState}/>
+      <AddOrEditAffirmationForm isLoading={isLoading} setIsLoading={setIsLoading} toggleViewState={toggleVisibleState}/>
     }
     />
   );

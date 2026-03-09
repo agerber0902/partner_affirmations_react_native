@@ -4,29 +4,39 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { KeyboardAvoidingView, Platform, View } from "react-native";
 import Button from "../shared/button";
 import LoadingSpinner from "../shared/loading-spinner";
-import { addAffirmation, getUserCreatedAffirmations } from "@/helpers/affirmation-helper";
+import {
+  addAffirmation,
+  editAffirmation,
+  getUserCreatedAffirmations,
+} from "@/helpers/affirmation-helper";
 import { useAuth } from "@/providers/auth-provider";
 import SharedTextInput from "../shared/shared-text-input";
-import { useAppDispatch } from "@/state/hooks";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { setUserCreatedAffirmations } from "@/state/slices/affirmation";
 
-type AddAffirmationFormProps = {
+type AddOrEditAffirmationFormProps = {
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   toggleViewState: (t: boolean) => void;
 };
 
-const AddAffirmationForm = ({
+const AddOrEditAffirmationForm = ({
   isLoading,
   setIsLoading,
-  toggleViewState
-}: AddAffirmationFormProps) => {
-
+  toggleViewState,
+}: AddOrEditAffirmationFormProps) => {
   const { user } = useAuth();
 
-  const [message, setMessage] = useState<string | undefined>(undefined);
-
   const dispatch = useAppDispatch();
+  const { affirmationToEditOrDelete } = useAppSelector(
+    (state) => state.affirmation.value,
+  );
+
+  const [message, setMessage] = useState<string | undefined>(
+    affirmationToEditOrDelete?.message,
+  );
+
+  const isEdit: boolean = affirmationToEditOrDelete !== undefined;
 
   const handleAdd = async () => {
     //TODO: Validate input
@@ -37,19 +47,32 @@ const AddAffirmationForm = ({
     try {
       setIsLoading(true);
 
-      // Add to data base
-      await addAffirmation({message, displayDate: null, recipientId: user!.uid, creatorId: user!.uid});
+      if (isEdit && affirmationToEditOrDelete) {
+        const affirmation = {...affirmationToEditOrDelete};
+        affirmation.message = message;
+        await editAffirmation(affirmation);
+      } else {
+        // Add to data base
+        await addAffirmation({
+          message,
+          displayDate: null,
+          recipientId: user!.uid,
+          creatorId: user!.uid,
+        });
+      }
 
       // Refetch the list
-      dispatch(setUserCreatedAffirmations(await getUserCreatedAffirmations(user!.uid)));
+      dispatch(
+        setUserCreatedAffirmations(await getUserCreatedAffirmations(user!.uid)),
+      );
 
-      setMessage(''); // reset input
+      setMessage(""); // reset input
     } catch (error) {
       console.error("Failed to add affirmation:", error);
     } finally {
       setTimeout(() => {
         setIsLoading(false);
-        toggleViewState(false)
+        toggleViewState(false);
       }, 1000);
     }
   };
@@ -61,13 +84,17 @@ const AddAffirmationForm = ({
         style={sharedModalStyles.modalContainer}
       >
         <View style={addAffirmationModalStyles.inputs}>
-          <SharedTextInput value ={message} onChangeText={(message: string) => setMessage(message)} placeHolder="Enter Affirmation" />
+          <SharedTextInput
+            value={message}
+            onChangeText={(message: string) => setMessage(message)}
+            placeHolder="Enter Affirmation"
+          />
         </View>
-        
-        {isLoading && <LoadingSpinner viewStyle={{padding: 5}} />}
+
+        {isLoading && <LoadingSpinner viewStyle={{ padding: 5 }} />}
         <View style={addAffirmationModalStyles.actions}>
           <Button
-            title={isLoading ? "Loading" : "Add"}
+            title={isLoading ? "Loading" : isEdit ? "Save" : "Add"}
             onPress={handleAdd}
             isDisabled={isLoading}
           />
@@ -76,4 +103,4 @@ const AddAffirmationForm = ({
     </View>
   );
 };
-export default AddAffirmationForm;
+export default AddOrEditAffirmationForm;

@@ -12,7 +12,7 @@ import { affirmationCardStyles } from "@/constants/stylesheets/components/affima
 import { getUserCreatedAffirmations } from "@/helpers/affirmation-helper";
 import { useAuth } from "@/providers/auth-provider";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
-import { setUserCreatedAffirmations } from "@/state/slices/affirmation";
+import { setAffirmationToEditOrDelete, setUserCreatedAffirmations } from "@/state/slices/affirmation";
 import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -27,20 +27,22 @@ const AffirmationsScreen = () => {
   const [selectedAffirmationId, setSelectedAffirmationId] =
     useState<string>("");
 
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showAddEditModal, setShowAddEditModal] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] =
     useState<boolean>(false);
 
   const createButtonPressed = () => {
     // open modal
-    setShowModal(true);
+    setShowAddEditModal(true);
   };
 
-  const editButtonPressed = (affirmationId: string) => {
-    setSelectedAffirmationId(affirmationId);
+  const editButtonPressed = (affirmation: Affirmation) => {
+    // setSelectedAffirmationId(affirmationId);
+    dispatch(setAffirmationToEditOrDelete(affirmation));
+    setShowAddEditModal(true);
   };
-  const deleteButtonPressed = (affirmationId: string) => {
-    setSelectedAffirmationId(affirmationId);
+  const deleteButtonPressed = (affirmation: Affirmation) => {
+    setSelectedAffirmationId(affirmation.id!);
     setShowDeleteModal(true);
   };
 
@@ -61,8 +63,8 @@ const AffirmationsScreen = () => {
       <SharedSafeView header={<AffirmationHeader />}>
         <>
           <AddOrEditAffirmationModal
-            isVisible={showModal}
-            toggleVisibleState={() => setShowModal(!showModal)}
+            isVisible={showAddEditModal}
+            toggleVisibleState={() => setShowAddEditModal(!showAddEditModal)}
           />
           <DeleteAffirmationModal
             showModal={showDeleteModal}
@@ -88,7 +90,7 @@ const AffirmationsScreen = () => {
               {userCreatedAffirmations.map((affirmation: Affirmation) => (
                 <CreatedAffirmationView
                   key={affirmation.id}
-                  affirmationId={affirmation.id ?? ""}
+                  affirmation={affirmation}
                   onEdit={editButtonPressed}
                   onDelete={deleteButtonPressed}
                 >
