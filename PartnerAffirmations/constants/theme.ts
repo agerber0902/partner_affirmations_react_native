@@ -43,6 +43,7 @@ export const typography = {
     greeting: 30,
     modalHeader: 28,
     affirmation: 24,
+    accountInfoHeader: 18,
     body: 16,
     small: 14,
     button: 16,
