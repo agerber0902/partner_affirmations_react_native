@@ -8,22 +8,35 @@ const collectionName = "users";
 
 // Add the user to the database for querying
 export const addUser = async (user: User) => {
+  const parts = (user.displayName ?? "").trim().split(/\s+/);
+
+  const last = parts.length > 1 ? parts[parts.length - 1] : "";
+  const first =
+    parts.length > 1 ? parts.slice(0, -1).join(" ") : (parts[0] ?? "");
+
   await addData<AffirmationUser>(collectionName, {
     id: undefined,
     uid: user.uid,
     name: user.displayName ?? "",
+    first: first,
+    last: last,
     displayNameForPartner: user.displayName ?? "",
   });
 };
 
-export const getUser = async (id: string): Promise<AffirmationUser | undefined> => {
+export const getUser = async (
+  id: string,
+): Promise<AffirmationUser | undefined> => {
   const ref = collection(firestore, collectionName);
   const userQuery = query(ref, where("uid", "==", id), limit(1));
   const snapshot = await getDocs(userQuery);
 
-  if(snapshot.empty){
+  if (snapshot.empty) {
     return undefined;
   }
 
-  return AffirmationUserMap(snapshot.docs[0].data(), snapshot.docs[0].data().id);
+  return AffirmationUserMap(
+    snapshot.docs[0].data(),
+    snapshot.docs[0].data().id,
+  );
 };
