@@ -1,15 +1,15 @@
-import { User } from '@/constants/models/user';
+import { AffirmationUser } from '@/constants/models/user';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ProgressState {
   value: {
-    user: User | undefined;
+    affirmationUser: AffirmationUser | undefined;
   };
 }
 
 const initialState: ProgressState = {
   value: {
-    user: undefined,
+    affirmationUser: undefined,
   },
 };
 
@@ -17,8 +17,8 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<User | undefined>) => {
-      state.value.user = action.payload;
+    setUser: (state, action: PayloadAction<AffirmationUser | undefined>) => {
+      state.value.affirmationUser = action.payload;
     },
   },
 });
