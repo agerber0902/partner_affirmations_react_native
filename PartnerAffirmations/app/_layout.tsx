@@ -7,6 +7,7 @@ import { SourceSans3_400Regular, SourceSans3_500Medium } from "@expo-google-font
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import {StatusBar} from 'expo-status-bar';
+import UserBootStrap from "@/components/user-bootstrap";
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -30,6 +31,7 @@ export default function RootLayout() {
   return (
     <AuthProvider>
       <StoreProvder>
+        <UserBootStrap/>
         <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
