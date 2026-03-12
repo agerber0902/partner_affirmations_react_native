@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Theme } from "../../theme";
 
-export const loginModalStyles = () =>
+export const loginModalStyles =
   StyleSheet.create({
     loginForm: {
       display: "flex",
@@ -32,10 +32,10 @@ export const loginModalStyles = () =>
 
       paddingTop: 5,
 
-      color: Theme.colors.white,
+      color: Theme.colors.primaryText,
       fontStyle: "italic",
     },
     error: {
-      color: Theme.colors.notification,
+      color: Theme.colors.primaryText,
     },
   });
