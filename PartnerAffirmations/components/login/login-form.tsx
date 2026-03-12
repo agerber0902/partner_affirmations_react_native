@@ -13,6 +13,7 @@ import { signIn, signUp } from "@/helpers/firebase-helper";
 import { useAuth } from "@/providers/auth-provider";
 import { Theme } from "@/constants/theme";
 import SharedText from "../shared/shared-text";
+import { sharedTextInputStyles } from "@/constants/stylesheets/components/shared/shared-text-input-styles";
 
 type LoginFormProps = {
   isLogin: boolean;
@@ -20,9 +21,6 @@ type LoginFormProps = {
 };
 
 const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
-  const styles = loginModalStyles();
-  const modalStyles = sharedModalStyles();
-
   const { setDisplayName } = useAuth();
 
   const [name, setName] = useState<string>("");
@@ -45,49 +43,66 @@ const LoginForm = ({ isLogin, toggleLoginState }: LoginFormProps) => {
   };
 
   return (
-    <View style={styles.loginForm}>
+    <View style={loginModalStyles.loginForm}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        style={modalStyles.modalContainer}
+        style={sharedModalStyles.modalContainer}
       >
         {!isLogin && (
-          <TextInput
-            placeholder="Name"
-            value={name}
-            onChangeText={setName}
-            style={styles.input}
-            selectionColor={Theme.colors.primary}
-          />
+          <View style={sharedTextInputStyles.textInputWrapper}>
+            <TextInput
+              placeholder="Name"
+              value={name}
+              onChangeText={setName}
+              // style={loginModalStyles.input}
+              selectionColor={Theme.colors.primary}
+            />
+          </View>
         )}
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          style={styles.input}
-          autoCapitalize="none"
-          secureTextEntry={true}
-          textContentType="password"
-          autoComplete="password"
-        />
 
-        {error && <SharedText numberOfLines={1} style={styles.error} text={error}></SharedText>}
+        <View style={sharedTextInputStyles.textInputWrapper}>
+          <TextInput
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            // style={loginModalStyles.input}
+          />
+        </View>
 
-        <View style={styles.actions}>
+        <View style={sharedTextInputStyles.textInputWrapper}>
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            // style={loginModalStyles.input}
+            autoCapitalize="none"
+            secureTextEntry={true}
+            textContentType="password"
+            autoComplete="password"
+          />
+        </View>
+
+        {error && (
+          <SharedText
+            numberOfLines={1}
+            style={loginModalStyles.error}
+            text={error}
+          ></SharedText>
+        )}
+
+        <View style={loginModalStyles.actions}>
           <Button
             title={isLogin ? "Login" : "Create"}
             onPress={loginOrCreate}
           />
 
           <Pressable onPress={toggleLoginState}>
-            <SharedText style={styles.toggleAction} text={isLogin ? "Create Account" : "Back to Login"} />
+            <SharedText
+              style={loginModalStyles.toggleAction}
+              text={isLogin ? "Create Account" : "Back to Login"}
+            />
           </Pressable>
         </View>
       </KeyboardAvoidingView>
