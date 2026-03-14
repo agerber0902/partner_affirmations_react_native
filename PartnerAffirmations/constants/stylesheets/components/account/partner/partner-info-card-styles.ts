@@ -1,5 +1,4 @@
-import { Theme } from "@/constants/theme";
-import { StyleSheet, TextStyle } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const partnerInfoCardStyles = StyleSheet.create({
   infoCardContainer: {
@@ -8,8 +7,5 @@ export const partnerInfoCardStyles = StyleSheet.create({
   infoCardContent: {
     alignItems: "flex-start",
     justifyContent: "flex-start",
-  },
-  partnerNameText: {
-    ...Theme.partnerText as TextStyle
   },
 });

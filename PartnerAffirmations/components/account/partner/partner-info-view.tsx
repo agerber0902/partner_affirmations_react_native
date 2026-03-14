@@ -1,7 +1,6 @@
 import Header from "@/components/shared/header";
-import SharedText from "@/components/shared/shared-text";
-import { partnerInfoCardStyles } from "@/constants/stylesheets/components/account/partner/partner-info-card-styles";
 import { View } from "react-native";
+import PartnerInfoText from "./partner-name-text";
 
 const PartnerInfoView = () => {
   return (
@@ -9,7 +8,7 @@ const PartnerInfoView = () => {
       <View>
         <Header headerText="Partners" subHeaderText=""  headerStyle={{marginTop: 0}}/>
         <View>
-            <SharedText text="Partner 1" style={partnerInfoCardStyles.partnerNameText}/>
+            <PartnerInfoText/>
         </View>
       </View>
     </>

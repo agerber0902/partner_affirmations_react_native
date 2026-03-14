@@ -1,6 +1,6 @@
 import SharedCard from "@/components/shared/shared-card";
 import { partnerInfoCardStyles } from "@/constants/stylesheets/components/account/partner/partner-info-card-styles";
-import PartnerInfoView from "./partner-info-view";
+import PartnerInfoRow from "./partner-info-row";
 
 const PartnerInfoCard = () => {
   return (
@@ -10,7 +10,7 @@ const PartnerInfoCard = () => {
         cardContentStyle={partnerInfoCardStyles.infoCardContent}
         visible={true}
       >
-        <PartnerInfoView />
+        <PartnerInfoRow />
       </SharedCard>
     </>
   );
