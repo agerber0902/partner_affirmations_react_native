@@ -1,8 +1,7 @@
 import AccountHeader from "@/components/account/account-header";
-import AccountInfoView from "@/components/account/account-info-view";
+import AccountInfoCard from "@/components/account/account-info-card";
 import PartnerInfoCard from "@/components/account/partner/partner-info-card";
 import LoginModal from "@/components/modals/login-modal";
-import SharedCard from "@/components/shared/shared-card";
 import SharedSafeView from "@/components/shared/shared-safe-view";
 import { accountInfoStyles } from "@/constants/stylesheets/components/account/account-info-styles";
 import { useAuth } from "@/providers/auth-provider";
@@ -20,13 +19,7 @@ const AccountScreen = () => {
           <>
             <View style={accountInfoStyles.mainContainer}>
               {/* Account Info Card */}
-              <SharedCard
-                cardContainerStyle={accountInfoStyles.infoCardContainer}
-                cardContentStyle={accountInfoStyles.infoCardContent}
-                visible={true}
-              >
-                <AccountInfoView />
-              </SharedCard>
+              <AccountInfoCard />
 
               {/* Partner Info Card */}
               <PartnerInfoCard />
