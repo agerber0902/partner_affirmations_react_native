@@ -21,7 +21,6 @@ export const addUser = async (user: User) => {
     email: user.email ?? "",
     first: first,
     last: last,
-    displayNameForPartner: user.displayName ?? "",
   });
 };
 

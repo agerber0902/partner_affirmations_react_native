@@ -5,7 +5,6 @@ export interface AffirmationUser {
     email: string;
     first: string;
     last: string;
-    displayNameForPartner: string;
 }
 
 export const AffirmationUserMap = (data: any, id: string): AffirmationUser => {
@@ -16,6 +15,5 @@ export const AffirmationUserMap = (data: any, id: string): AffirmationUser => {
         first: data.first,
         last: data.last,
         email: data.email,
-        displayNameForPartner: data.displayNameForPartner
     };
 }
