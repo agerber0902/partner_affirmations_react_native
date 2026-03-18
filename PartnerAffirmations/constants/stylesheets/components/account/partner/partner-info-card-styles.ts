@@ -1,3 +1,4 @@
+import { Theme } from "@/constants/theme";
 import { StyleSheet } from "react-native";
 
 export const partnerInfoCardStyles = StyleSheet.create({
@@ -6,18 +7,29 @@ export const partnerInfoCardStyles = StyleSheet.create({
   },
   infoCardContent: {
     flex: 1,
-    
-    flexDirection: 'column',
+
+    flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "space-between",
   },
   actions: {
-    display: 'flex',
-    width: '100%',
+    display: "flex",
+    width: "100%",
+    paddingTop: Theme.spacing.lg,
+    
   },
   addButton: {
-    width: '50%',
+    width: "50%",
 
-    alignSelf: 'center',
+    alignSelf: "center",
+  },
+  noPartnersText: {
+    width: "100%",
+
+    color: Theme.colors.primaryText,
+    fontFamily: Theme.typography.fontFamily.serif,
+    fontSize: Theme.typography.sizes.affirmation,
+
+    textAlign: 'center',
   },
 });

@@ -3,8 +3,9 @@ import LoadingSpinner from "@/components/shared/loading-spinner";
 import SharedTextInput from "@/components/shared/shared-text-input";
 import { addEditPartnerModalStyles } from "@/constants/stylesheets/modals/add-edit-partner-modal-styles";
 import { sharedModalStyles } from "@/constants/stylesheets/modals/shared-modal-styles";
-import { addPartnerConnection } from "@/helpers/partner-helper";
-import { useAppSelector } from "@/state/hooks";
+import { addPartnerConnection, getPartnerConnections } from "@/helpers/partner-helper";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
+import { setPartnerConnections } from "@/state/slices/partner-connection";
 import { Dispatch, SetStateAction, useState } from "react";
 import { KeyboardAvoidingView, Platform, View } from "react-native";
 
@@ -19,6 +20,7 @@ const AddPartnerForm = ({
   setIsLoading,
   toggleViewState,
 }: AddPartnerFormProps) => {
+  const dispatch = useAppDispatch();
   const { affirmationUser } = useAppSelector((state) => state.user.value);
 
   const [displayName, setDisplayName] = useState<string>("");
@@ -31,8 +33,8 @@ const AddPartnerForm = ({
     try {
       await addPartnerConnection(affirmationUser!, email, displayName);
 
-      // Call get partner connections
-      
+      dispatch(setPartnerConnections(await getPartnerConnections(affirmationUser!.uid)));
+
     } finally {
       setTimeout(() => {
         setIsLoading(false);
