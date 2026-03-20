@@ -1,5 +1,5 @@
 import { PartnerConnection, partnerConnectionMap } from "@/constants/models/partnerConnection";
-import { addData } from "./firebase-helper";
+import { addData, deleteData } from "./firebase-helper";
 import { getUserByEmail } from "./user-helper";
 import { AffirmationUser } from "@/constants/models/user";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -39,6 +39,10 @@ export const getPartnerConnections = async (userId: string): Promise<PartnerConn
   }
 
   return connections;
+};
+
+export const deletePartnerConnection = async (id: string) => {
+  await deleteData(collectionName, id);
 };
 
 export const addPartnerConnection = async (

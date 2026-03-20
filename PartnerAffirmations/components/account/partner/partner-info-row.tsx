@@ -9,33 +9,73 @@ import { PartnerConnection } from "@/constants/models/partnerConnection";
 import { useEffect, useState } from "react";
 import { getUser } from "@/helpers/user-helper";
 import { AffirmationUser } from "@/constants/models/user";
+import {
+  deletePartnerConnection,
+  getPartnerConnections,
+} from "@/helpers/partner-helper";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
+import { setPartnerConnections } from "@/state/slices/partner-connection";
+import LoadingSpinner from "@/components/shared/loading-spinner";
 
 type PartnerInfoRowProps = {
   connection: PartnerConnection;
 };
 
-const PartnerInfoRow = ({connection}: PartnerInfoRowProps) => {
+const PartnerInfoRow = ({ connection }: PartnerInfoRowProps) => {
   const { width } = useWindowDimensions();
 
-  const [partnerUser, setPartnerUser] = useState<AffirmationUser | undefined>(undefined);
+  const dispatch = useAppDispatch();
+  const { affirmationUser } = useAppSelector((state) => state.user.value);
 
-useEffect(() => {
-  const fetchPartner = async () => {
-    if (!connection?.partnerId) return;
+  const [partnerUser, setPartnerUser] = useState<AffirmationUser | undefined>(
+    undefined,
+  );
 
-    const partner = await getUser(connection.partnerId);
-    setPartnerUser(partner);
+  const [partnerDisplayName, setPartnerDisplayName] = useState<string>(
+    connection.partnerDisplayName,
+  );
+  const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
+
+  const onDelete = async () => {
+    try {
+      setIsDeleteLoading(true);
+
+      await deletePartnerConnection(connection.id!);
+
+      // update
+      const updatedConnections = await getPartnerConnections(
+        affirmationUser?.uid ?? "",
+      );
+
+      dispatch(setPartnerConnections(updatedConnections));
+    } finally {
+      //  Add delay to make it not so jumpy
+      setTimeout(() => {
+        setIsDeleteLoading(false);
+      }, 1000);
+    }
   };
 
-  fetchPartner();
-}, [connection?.partnerId]);
+  useEffect(() => {
+    const fetchPartner = async () => {
+      if (!connection?.partnerId) return;
+
+      const partner = await getUser(connection.partnerId);
+      setPartnerUser(partner);
+    };
+
+    fetchPartner();
+  }, [connection?.partnerId]);
 
   const lineBreak = Platform.OS !== "web" || width < 700;
   return (
     <>
       <View style={partnerInfoRowStyles.mainContainer}>
         <View style={partnerInfoRowStyles.partnerNameContainer}>
-          <PartnerNameText partnerName={partnerUser?.name ?? ''} partnerDisplayName={connection.partnerDisplayName}/>
+          <PartnerNameText
+            partnerName={partnerUser?.name ?? ""}
+            partnerDisplayName={connection.partnerDisplayName}
+          />
         </View>
         <View style={partnerInfoRowStyles.createdDateContainer}>
           {lineBreak && (
@@ -46,12 +86,18 @@ useEffect(() => {
           )}
           <SharedText
             style={partnerInfoTextStyles.partnerFullName}
-            text={`${!lineBreak ? 'Partners Since: ': ''}${connection.createdAt}`}
+            text={`${!lineBreak ? "Partners Since: " : ""}${connection.createdAt}`}
           />
         </View>
         <View style={partnerInfoRowStyles.actionContainer}>
-          <EditIconButton onEdit={() => {}} />
-          <DeleteIconButton onClick={() => {}} />
+          {isDeleteLoading ? (
+            <LoadingSpinner viewStyle={{ padding: 5 }}/>
+          ) : (
+            <>
+              <EditIconButton onEdit={() => {}} />
+              <DeleteIconButton onClick={onDelete} />
+            </>
+          )}
         </View>
       </View>
     </>

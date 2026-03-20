@@ -4,7 +4,7 @@ export type PartnerConnection = {
     connectionCreatorDisplayName: string;
     partnerId: string;
     partnerDisplayName: string;
-    createdAt: string;
+    createdAt?: string;
 };
 
 export const partnerConnectionMap = (data: any, id: string): PartnerConnection => {
