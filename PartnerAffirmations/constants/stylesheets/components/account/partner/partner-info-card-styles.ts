@@ -2,12 +2,10 @@ import { radius, shadows, spacing, Theme } from "@/constants/theme";
 import { StyleSheet } from "react-native";
 
 export const partnerInfoCardStyles = StyleSheet.create({
-  infoCardContainer: {
-    backgroundColor: Theme.colors.card,
-    borderRadius: radius.card,
-    paddingVertical: spacing.xl,
-    paddingHorizontal: spacing.lg,
-    ...shadows.card,
+  infoContainer: {
+    width: '100%',
+
+    color: Theme.colors.primary,
 
     flex: 1,
   },
