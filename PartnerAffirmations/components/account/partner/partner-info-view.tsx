@@ -31,6 +31,7 @@ const PartnerInfoView = () => {
   }, [partnerConnections, affirmationUser, dispatch]);
 
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
+  // TODO: only allow delete if created user
   return (
     <>
       <AddPartnerModal

@@ -13,6 +13,7 @@ import { useAuth } from "@/providers/auth-provider";
 import SharedTextInput from "../shared/shared-text-input";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { setUserCreatedAffirmations } from "@/state/slices/affirmation";
+import SharedPicker from "../shared/shared-picker";
 
 type AddOrEditAffirmationFormProps = {
   isLoading: boolean;
@@ -31,12 +32,26 @@ const AddOrEditAffirmationForm = ({
   const { affirmationToEditOrDelete } = useAppSelector(
     (state) => state.affirmation.value,
   );
+  const { displayConnections } = useAppSelector(
+    (state) => state.partnerConnection.value,
+  );
 
   const [message, setMessage] = useState<string | undefined>(
     affirmationToEditOrDelete?.message,
   );
+  const [recipientId, setRecipientId] = useState<string | undefined>(
+    affirmationToEditOrDelete?.recipientId,
+  );
 
   const isEdit: boolean = affirmationToEditOrDelete !== undefined;
+
+  const recipientPickerValues = [
+    // { label: "-- Choose Recipient --", value: user!.uid },
+    { label: "Personal", value: user!.uid },
+    ...displayConnections.map((c) => {
+      return { label: c.partnerDisplayName, value: c.partnerId };
+    }),
+  ];
 
   const handleAdd = async () => {
     //TODO: Validate input
@@ -48,15 +63,16 @@ const AddOrEditAffirmationForm = ({
       setIsLoading(true);
 
       if (isEdit && affirmationToEditOrDelete) {
-        const affirmation = {...affirmationToEditOrDelete};
+        const affirmation = { ...affirmationToEditOrDelete };
         affirmation.message = message;
+        affirmation.recipientId = recipientId ?? affirmation.recipientId
         await editAffirmation(affirmation);
       } else {
         // Add to data base
         await addAffirmation({
           message,
           displayDate: null,
-          recipientId: user!.uid,
+          recipientId: recipientId ?? user!.uid,
           creatorId: user!.uid,
         });
       }
@@ -67,6 +83,8 @@ const AddOrEditAffirmationForm = ({
       );
 
       setMessage(""); // reset input
+      setRecipientId(undefined);
+      
     } catch (error) {
       console.error("Failed to add affirmation:", error);
     } finally {
@@ -88,6 +106,12 @@ const AddOrEditAffirmationForm = ({
             value={message}
             onChangeText={(message: string) => setMessage(message)}
             placeHolder="Enter Affirmation"
+          />
+
+          <SharedPicker
+            pickerValues={recipientPickerValues}
+            selectedValue={recipientId}
+            onValueChange={setRecipientId}
           />
         </View>
 
