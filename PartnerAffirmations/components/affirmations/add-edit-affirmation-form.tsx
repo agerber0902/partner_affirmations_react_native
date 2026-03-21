@@ -2,6 +2,7 @@ import { addAffirmationModalStyles } from "@/constants/stylesheets/modals/add-af
 import { sharedModalStyles } from "@/constants/stylesheets/modals/shared-modal-styles";
 import { Dispatch, SetStateAction, useState } from "react";
 import { KeyboardAvoidingView, Platform, View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import Button from "../shared/button";
 import LoadingSpinner from "../shared/loading-spinner";
 import {
@@ -13,6 +14,7 @@ import { useAuth } from "@/providers/auth-provider";
 import SharedTextInput from "../shared/shared-text-input";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { setUserCreatedAffirmations } from "@/state/slices/affirmation";
+import SharedPicker from "../shared/shared-picker";
 
 type AddOrEditAffirmationFormProps = {
   isLoading: boolean;
@@ -31,12 +33,21 @@ const AddOrEditAffirmationForm = ({
   const { affirmationToEditOrDelete } = useAppSelector(
     (state) => state.affirmation.value,
   );
+  const { displayConnections } = useAppSelector(
+    (state) => state.partnerConnection.value,
+  );
 
   const [message, setMessage] = useState<string | undefined>(
     affirmationToEditOrDelete?.message,
   );
 
   const isEdit: boolean = affirmationToEditOrDelete !== undefined;
+
+  const recipientPickerValues = [
+    { label: "-- Choose Recipient --", value: user!.uid },
+    { label: "Personal", value: user!.uid},
+    ...displayConnections.map((c) => {return {label: c.partnerDisplayName, value: c.partnerId}})
+  ];
 
   const handleAdd = async () => {
     //TODO: Validate input
@@ -48,7 +59,7 @@ const AddOrEditAffirmationForm = ({
       setIsLoading(true);
 
       if (isEdit && affirmationToEditOrDelete) {
-        const affirmation = {...affirmationToEditOrDelete};
+        const affirmation = { ...affirmationToEditOrDelete };
         affirmation.message = message;
         await editAffirmation(affirmation);
       } else {
@@ -89,6 +100,8 @@ const AddOrEditAffirmationForm = ({
             onChangeText={(message: string) => setMessage(message)}
             placeHolder="Enter Affirmation"
           />
+
+          <SharedPicker pickerValues={recipientPickerValues} />
         </View>
 
         {isLoading && <LoadingSpinner viewStyle={{ padding: 5 }} />}

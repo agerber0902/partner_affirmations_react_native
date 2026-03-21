@@ -17,6 +17,7 @@ export const addAffirmationModalStyles =
     },
     inputs: {
       padding: spacing.sm,
+      gap: spacing.sm,
     },
     input: {
       width: "100%",
