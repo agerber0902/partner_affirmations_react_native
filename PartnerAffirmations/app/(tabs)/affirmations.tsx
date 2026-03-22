@@ -1,5 +1,5 @@
 import AffirmationHeader from "@/components/affirmations/affirmation-header";
-import AffirmationText from "@/components/affirmations/affirmation-text";
+import AffirmationViewRow from "@/components/affirmations/affirmation-view-row";
 import CreatedAffirmationView from "@/components/affirmations/created-affirmation-view";
 import AddOrEditAffirmationModal from "@/components/modals/add-edit-affirmation-modal";
 import DeleteAffirmationModal from "@/components/modals/delete-affirmation-modal";
@@ -101,11 +101,9 @@ const AffirmationsScreen = () => {
                     onEdit={editButtonPressed}
                     onDelete={deleteButtonPressed}
                   >
-                    <AffirmationText
-                      key={affirmation.id}
-                      style={affirmationCardStyles.affirmation}
-                      text={affirmation.message}
-                    />
+                    <>
+                      <AffirmationViewRow affirmation={affirmation}/>
+                    </>
                   </CreatedAffirmationView>
                 ))}
               </ScrollView>
