@@ -7,9 +7,11 @@ import { setTodaysAffirmation } from "@/state/slices/affirmation";
 import SharedSafeView from "@/components/shared/shared-safe-view";
 import WelcomeMessage from "@/components/home/welcome-message";
 import LoginModal from "@/components/modals/login-modal";
-import { setDisplayConnections, setPartnerConnections } from "@/state/slices/partner-connection";
+import {
+  setDisplayConnections,
+  setPartnerConnections,
+} from "@/state/slices/partner-connection";
 import { getPartnerConnections } from "@/helpers/partner-helper";
-import ReworkedCard from "@/components/shared/reworked-card";
 
 const App = () => {
   const { user, isAuthenticated } = useAuth();
@@ -18,7 +20,9 @@ const App = () => {
   const { todaysAffirmation } = useAppSelector(
     (state) => state.affirmation.value,
   );
-  const {displayConnections} = useAppSelector((state) => state.partnerConnection.value);
+  const { displayConnections } = useAppSelector(
+    (state) => state.partnerConnection.value,
+  );
 
   useEffect(() => {
     const getAffirmation = async () => {
@@ -37,12 +41,17 @@ const App = () => {
     };
 
     const getPartners = async () => {
-      if(isAuthenticated && (!displayConnections || displayConnections.length <= 0)){
-        const {connections, displays} = await getPartnerConnections(user!.uid);
+      if (
+        isAuthenticated &&
+        (!displayConnections || displayConnections.length <= 0)
+      ) {
+        const { connections, displays } = await getPartnerConnections(
+          user!.uid,
+        );
         dispatch(setPartnerConnections(connections));
         dispatch(setDisplayConnections(displays));
       }
-    }
+    };
 
     getAffirmation();
     getPartners();
@@ -55,7 +64,6 @@ const App = () => {
       ) : (
         <SharedSafeView header={<WelcomeMessage />}>
           <AffirmationCard />
-          {/* <ReworkedCard /> */}
         </SharedSafeView>
       )}
     </>
