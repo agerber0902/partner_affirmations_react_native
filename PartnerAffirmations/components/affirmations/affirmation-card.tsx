@@ -1,6 +1,5 @@
 import { useAuth } from "@/providers/auth-provider";
 import FadeInView from "../shared/fade-in-animated-view";
-import { View } from "react-native";
 import AffirmationText from "./affirmation-text";
 import { affirmationCardStyles } from "@/constants/stylesheets/components/affimations/affirmation-card-styles";
 import {

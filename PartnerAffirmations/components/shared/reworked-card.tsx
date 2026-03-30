@@ -4,15 +4,13 @@ import FadeInView from "./fade-in-animated-view";
 
 type ReworkedCardProps = {
   children: React.ReactNode;
+  visible?: boolean;
 };
 
-const ReworkedCard = ({ children }: ReworkedCardProps) => {
+const ReworkedCard = ({ children, visible = true }: ReworkedCardProps) => {
   return (
-    <FadeInView style={styles.mainCardContainer}>
+    <FadeInView style={styles.mainCardContainer} visible={visible}>
       <View style={styles.mainCardContent}>
-        {/* <Text style={{ width: "100%", textAlign: "center" }}>
-          Reworked Card
-        </Text> */}
         {children}
       </View>
     </FadeInView>

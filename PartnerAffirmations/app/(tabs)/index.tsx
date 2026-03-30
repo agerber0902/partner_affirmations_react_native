@@ -9,8 +9,6 @@ import WelcomeMessage from "@/components/home/welcome-message";
 import LoginModal from "@/components/modals/login-modal";
 import { setDisplayConnections, setPartnerConnections } from "@/state/slices/partner-connection";
 import { getPartnerConnections } from "@/helpers/partner-helper";
-import ReworkedCard from "@/components/shared/reworked-card";
-
 const App = () => {
   const { user, isAuthenticated } = useAuth();
 
@@ -55,7 +53,6 @@ const App = () => {
       ) : (
         <SharedSafeView header={<WelcomeMessage />}>
           <AffirmationCard />
-          {/* <ReworkedCard /> */}
         </SharedSafeView>
       )}
     </>
