@@ -12,6 +12,11 @@ export const Theme = {
   componentHeights: {
     cardHeight: (Platform.OS === "web" ? "90%" : "80%") as DimensionValue,
   },
+  //   Spacing
+  spacing: {
+    sm: 16,
+    md: 24,
+  },
   //   Borders
   borders: {
     cardRadius: 24,

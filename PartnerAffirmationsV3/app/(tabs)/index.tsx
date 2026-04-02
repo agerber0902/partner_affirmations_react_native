@@ -1,9 +1,13 @@
 import DisplayCard from "@/components/shared/display-card";
+import { safeAreaStyle } from "@/style/stylesheets/pages/safe-area-style";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
     <>
-      <DisplayCard />
+      <SafeAreaView style={safeAreaStyle.safeArea}>
+        <DisplayCard />
+      </SafeAreaView>
     </>
   );
 }
