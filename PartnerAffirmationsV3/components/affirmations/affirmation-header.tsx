@@ -1,4 +1,10 @@
+import HeaderView from "../shared/header-view"
+
 const AffirmationHeader = () => {
-    return (<></>);
+    return (
+    <>
+      <HeaderView title="Affirmations"/>
+    </>
+  );
 };
 export default AffirmationHeader;
