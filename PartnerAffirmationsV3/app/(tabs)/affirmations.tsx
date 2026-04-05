@@ -5,6 +5,7 @@ import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AffirmationsModal from "../modals/affirmations-modal";
 import { Text } from "react-native";
+import UserCreatedAffirmationView from "@/components/affirmations/user-created-affirmation-view";
 
 const AffirmationsScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -28,9 +29,7 @@ const AffirmationsScreen = () => {
 
       <SafeAreaView style={safeAreaStyle.safeArea}>
         <AffirmationHeader />
-        <DisplayCard>
-          <Text />
-        </DisplayCard>
+        <UserCreatedAffirmationView/>
       </SafeAreaView>
     </>
   );
