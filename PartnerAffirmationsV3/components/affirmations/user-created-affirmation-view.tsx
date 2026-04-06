@@ -2,6 +2,7 @@ import { ScrollView, Text } from "react-native";
 import DisplayCard from "../shared/display-card";
 import { _currentUser, affirmations } from "@/data/mock";
 import { userCreatedAffirmationsCardStyle } from "@/style/stylesheets/affirmations/user-created-affirmations-card-style";
+import ListedAffirmationView from "./listed-affirmation-view";
 
 const UserCreatedAffirmationView = () => {
   const userCreatedAffirmations = affirmations.filter(
@@ -27,14 +28,9 @@ const UserCreatedAffirmationView = () => {
             )}
             {hasAffirmations &&
               userCreatedAffirmations.map((affirmation) => (
-                <Text
-                  style={userCreatedAffirmationsCardStyle.affirmationText}
-                  key={affirmation.id}
-                  numberOfLines={2}
-                  ellipsizeMode="tail"
-                >
-                  {affirmation.message}
-                </Text>
+                <>
+                  <ListedAffirmationView affirmation={affirmation}/>
+                </>
               ))}
           </ScrollView>
 
